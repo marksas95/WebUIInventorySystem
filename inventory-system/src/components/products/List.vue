@@ -16,8 +16,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="product in products" >
-        <th>{{product.category}}</th>
+      <tr v-for="product in activeProducts" >
+        <th>{{product.category == null ? '':product.category.name}}</th>
         <th>{{product.name}}</th>
         <th>{{product.itemCode}}</th>
         <th>{{product.description}}</th>
@@ -45,8 +45,11 @@
       }
     },
     computed:{
+      activeProducts(){
+        return this.$store.getters.getActiveProducts;
+      },
       products(){
-        return this.$store.getters.getProducts;
+        return this.$store.state.product.products;
       }
     },
     created: function () {
@@ -60,7 +63,9 @@
     },
     methods:{
       editProduct(product){
-        console.log(product.name)
+        console.log(product)
+        let category = this.$store.getters.getCategory(product.id)
+        console.log(category)
       }
     },
     components:{
