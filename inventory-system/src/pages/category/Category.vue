@@ -30,6 +30,17 @@ export default {
       console.log(response.data)
       this.$store.dispatch("setCategory", response.data)  
     });
+  },
+  methods:{
+    editCategory(categoryId){
+      console.log('edit')
+      console.log(categoryId)
+    },
+    deleteCategory(categoryId){
+      console.log('delete')
+      console.log(categoryId)
+    }
+
   }
 };
 </script>
