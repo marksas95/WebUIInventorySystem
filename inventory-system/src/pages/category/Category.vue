@@ -1,18 +1,18 @@
 <template>
-  <appCategory :table-headers="categoryHeaders"
-                :table-data="tableData"></appCategory>
+  <categoryTable :table-headers="categoryHeaders"
+                :table-data="tableData" />
 </template>
 
 <script>
 
-  import CategoryTable from '../../components/products/BaseTable.vue'
-  import Header from "../../components/products/Header.vue";
+  import CategoryTable from '../../components/BaseTable.vue'
+ 
 
 
   export default {
     name: "Category",
     components: {
-      appCategory: CategoryTable
+      categoryTable: CategoryTable
     },
     data() {
           return {
@@ -21,9 +21,17 @@
 
     },
     computed:{
-      category(){
-          return this.$store.state
+      categories(){
+          return this.$store.state.category.categories.map(o =>{
+            return [o.name]
+          })
       }
+    },
+    created(){
+      this.axios.get('api/category/list').then(response=>{
+        console.log(response.data)
+        this.$store.dispatch('setCategory', response.data)
+      })
     }
   }
 </script>

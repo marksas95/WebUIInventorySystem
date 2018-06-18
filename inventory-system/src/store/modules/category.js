@@ -1,5 +1,5 @@
 const state = {
-  category: [],
+  categories: [],
   categoryId: '',
 
 }
@@ -7,17 +7,17 @@ const state = {
 
 
 const getters = {
-  getCategory: (state) => (categoryId) => {
-    return state.category.find((e) === categoryId);
-  }
+  // getCategory: (state) => (categoryId) => {
+  //   return state.category.find((e) === categoryId);
+  // }
 };
 
 
 const mutations = {
-  setCategory: (state, category) => {
-    state.category = category;
+  setCategory: (state, categories) => {
+    state.categories = categories;
   },
-  setCategoryId: (state, category) =>{
+  setCategoryId: (state, categories) =>{
 	  state.categoryId = categoryId;
   }
 };
@@ -25,8 +25,8 @@ const mutations = {
 
 
 const actions = {
-	setCategory: ({commit},category) => {
-		commit('setCategory', category );
+	setCategory: ({commit},categories) => {
+		commit('setCategory', categories );
 	},
 	setCategoryId: ({commit},categoryId) => {
 		commit('setCategory', categoryId );
