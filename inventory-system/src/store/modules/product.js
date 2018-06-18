@@ -1,5 +1,6 @@
 const state = {
   products: [],
+  productId:'',
   counter: 0
 };
 
@@ -8,14 +9,7 @@ const getters = {
       return state.products.filter((val) => val.active);
     },
     getCategory: (state) => (productId) => {
-
-
-        console.log( state.products)
-        let gg = state.products.find((e) => e.id === productId);
-
-        console.log(productId)
         return state.products.find((e) => e.id === productId).category;
-
     }
   }
 ;
@@ -24,12 +18,18 @@ const mutations = {
   setProducts: (state, products) => {
     state.products = products;
   },
+  setProductId: (state, productId) => {
+    state.productId = productId;
+  },
   decrement: (state, payload) => {
     state.counter -= payload;
   }
 };
 
 const actions = {
+  setProductId: ({commit}, productId) => {
+    commit('setProductId', productId);
+  },
   setProducts: ({commit}, products) => {
     commit('setProducts', products);
   },

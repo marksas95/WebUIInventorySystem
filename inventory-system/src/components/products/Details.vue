@@ -7,8 +7,8 @@
           <div class="panel-heading">
             <h4>Product Details</h4>
           </div>
-          <div class="panel-body">
-            <p>Category: {{product.category}}</p>
+          <div class="panel-body">            
+            <p>Category: {{product.category == null ? '':product.category.name}}</p>
             <p>Item Code: {{product.itemCode}}</p>
             <p style="white-space: pre">Description: {{product.description}}</p>
             <p>Unit of Measurement: {{product.unitOfMeasurement}}</p>
@@ -26,11 +26,19 @@
 <script>
   import Header from './Header.vue'
 
+
   export default {
     data() {
       return {
-        product: {}
+        product: []
       }
+    },
+    created(){
+      let productId = this.$store.state.product.productId
+      console.log(productId)
+      this.axios.get('/api/product/findById?id='+productId).then((response) => {
+        this.product = response.data
+      })
     },
     components: {
       appHeader: Header

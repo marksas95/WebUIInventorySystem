@@ -10,7 +10,7 @@
                   data-target="#bs-example-navbar-collapse-1"
                   aria-expanded="false">
           </button>
-          <router-link to="/" tag="li" active-class="active" exact><a class="navbar-brand" href="#">Home</a></router-link>
+          <router-link to="/" tag="li" active-class="active" exact><a class="navbar-brand" href="#">Inventory System</a></router-link>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

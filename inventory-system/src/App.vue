@@ -1,9 +1,12 @@
 <template>
-  <div class="container">
-    <h1>Inventory System</h1>
+  <div>
     <appNavigationBar></appNavigationBar>
-    <router-view></router-view>
+    <div class="container">
+
+      <router-view></router-view>
+    </div>
   </div>
+
 </template>
 
 <script>
