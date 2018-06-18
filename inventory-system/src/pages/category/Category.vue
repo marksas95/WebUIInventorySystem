@@ -19,7 +19,9 @@
 
     },
     computed:{
-      
+      category(){
+          return this.$store.state
+      }
     }
   }
 </script>
