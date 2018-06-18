@@ -4,7 +4,7 @@ import Home from './components/Home.vue'
 import ProductDetails from './components/products/Details.vue'
 import Category from './pages/category/Category.vue'
 import Warehouse from './pages/warehouse/Warehouse'
-import Supplier from '.pages/supplier/Supplier.vue'
+import Supplier from './pages/supplier/Supplier.vue'
 
 export const routes = [
   //{path: '', component: List},
