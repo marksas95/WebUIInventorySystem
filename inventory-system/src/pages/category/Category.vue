@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import CategoryTable from '../../components/products/BaseTable.vue'
+  import CategoryTable from '../../components/BaseTable.vue'
 
   export default {
     name: "Category",
