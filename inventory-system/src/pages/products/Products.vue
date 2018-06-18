@@ -26,7 +26,10 @@
       },
       products() {
         return this.$store.state.product.products.map(p => {
-            return [p.category == null ? '':p.category.name,p.itemCode,p.description,p.unitOfMeasurement,p.serialNumber,p.active]
+            return {
+              id:p.id,
+              data:[p.category == null ? '':p.category.name,p.itemCode,p.description,p.unitOfMeasurement,p.serialNumber,p.active]
+            }
         });
       }
     },

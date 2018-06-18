@@ -1,7 +1,9 @@
 <template>
   <warehouseTable
-    :table-headers= "tableHeaders"
-    :table-data = "warehouses"
+    :table-headers="tableHeaders"
+    :table-data="warehouses"
+    :on-edit="editWarehouse"
+    :on-delete="deleteWarehouse"
   />
 </template>
 
@@ -19,18 +21,30 @@
       warehouseTable: WarehouseTable
     },
     computed: {
-      warehouses(){
+      warehouses() {
         return this.$store.state.warehouse.warehouses.map(o => {
-            return [o.name, o.address, o.description]
+            return {
+              id: o.id,
+              data: [o.name, o.address, o.description]
+            }
           }
         )
       }
     },
     created() {
       this.axios.get('/api/warehouse/list').then(response => {
-        console.log(response.data)
         this.$store.dispatch('setWarehouses', response.data)
       })
+    },
+    methods: {
+      editWarehouse(warehouseId) {
+        console.log('edit')
+        console.log(warehouseId)
+      },
+      deleteWarehouse(warehouseId) {
+        console.log('delete')
+        console.log(warehouseId)
+      }
     }
   }
 </script>
