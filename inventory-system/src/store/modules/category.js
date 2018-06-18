@@ -2,7 +2,7 @@ const state = {
   categories: [],
   categoryId: '',
 
-}
+};
 
 
 

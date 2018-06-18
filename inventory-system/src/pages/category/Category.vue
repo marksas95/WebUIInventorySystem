@@ -1,6 +1,6 @@
 <template>
   <categoryTable :table-headers="categoryHeaders"
-                :table-data="categories" />
+                :table-data="tableData" />
 </template>
 
 <script>
@@ -23,10 +23,7 @@
     computed:{
       categories(){
           return this.$store.state.category.categories.map(o =>{
-            return {
-              id:o.id,
-              data:[o.name]
-            }
+            return [o.name]
           })
       }
     },
