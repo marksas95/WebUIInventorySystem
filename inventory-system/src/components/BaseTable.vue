@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table  class="table">
+    <table class="table">
       <thead>
       <tr>
         <template v-for="tableHeader in tableHeaders">
