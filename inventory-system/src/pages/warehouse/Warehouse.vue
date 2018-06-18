@@ -1,6 +1,6 @@
 <template>
   <warehouseTable
-    :table-headers="tableHeaders"
+    :table-headers= "tableHeaders"
     :table-data = "warehouses"
   />
 </template>
