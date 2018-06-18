@@ -4,8 +4,10 @@
 </template>
 
 <script>
+
   import CategoryTable from '../../components/products/BaseTable.vue'
   import Header from "../../components/products/Header.vue";
+
 
   export default {
     name: "Category",
