@@ -6,12 +6,12 @@
         :table-data="products"
         :on-edit="editProduct"
         :on-delete="deleteProduct"
-        :on-details="productDetails"
+        :on-details="getProduct"
         :on-click="onClick"/>
 
     <product-details v-show="individualDetails"
         :details-title="detailsTitle"
-        :objectDetails="objectDetails"
+        :objectDetails="productDetails"
         :on-click="onClick"/>
   </div>
 </template>
@@ -27,7 +27,7 @@
         tableHeaders: ['Category', 'Item Code', 'Description', 'Unit of Measurement', 'Serial Number', 'Status'],
         individualDetails:false,
         productIdToPass:0,
-        objectDetails:{}
+        productDetails:{}
       }
     },
     computed: {
@@ -62,11 +62,11 @@
         console.log(productID)
         //
       },
-      productDetails(productId) {
+      getProduct(productId) {
         console.log(productId)
         this.axios.get('/api/product/findById?id=' + productId).then((response) => {
           let p = response.data
-          this.objectDetails = {
+          this.productDetails = {
             'Category': p.category == null ? '':p.category.name,
             'Item Code': p.itemCode,
             'Description' : p.description,
@@ -74,7 +74,7 @@
             'Serial Number' : p.serialNumber,
             'Status' : p.active == true ? 'Active':'Not Active'
           }
-          console.log(this.objectDetails)
+          console.log(this.productDetails)
         })
       },
       deleteProduct(product) {

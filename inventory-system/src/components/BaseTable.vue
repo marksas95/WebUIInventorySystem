@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table class="table">
+    <table class="table table-hover">
       <thead>
       <tr>
         <template v-for="tableHeader in tableHeaders">
@@ -10,7 +10,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="x in tableData">
+      <tr v-for="x in tableData" @click="click(x)">
         <template v-for="value in x.data">
           <th>{{value}}</th>
         </template>
@@ -63,6 +63,9 @@
       }
     },
     methods: {
+      click(data){
+        console.log(data)
+      }
     }
   }
 </script>
