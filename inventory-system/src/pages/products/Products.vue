@@ -1,23 +1,33 @@
 <template>
   <div>
     <appHeader></appHeader>
-    <productTable
-      :table-headers="tableHeaders"
-      :table-data="products"
-      :on-edit="editProduct"
-      :on-delete="deleteProduct"/>
+    <productTable v-show="!individualDetails"
+        :table-headers="tableHeaders"
+        :table-data="products"
+        :on-edit="editProduct"
+        :on-delete="deleteProduct"
+        :on-details="productDetails"
+        :on-click="onClick"/>
+
+    <product-details v-show="individualDetails"
+        :details-title="detailsTitle"
+        :objectDetails="objectDetails"
+        :on-click="onClick"/>
   </div>
 </template>
 
 <script>
   import Header from '../../components/products/Header.vue'
   import ProductTable from '../../components/BaseTable.vue'
+  import ProductDetails from '../../components/BaseDetails'
 
   export default {
     data() {
       return {
         tableHeaders: ['Category', 'Item Code', 'Description', 'Unit of Measurement', 'Serial Number', 'Status'],
-
+        individualDetails:false,
+        productIdToPass:0,
+        objectDetails:{}
       }
     },
     computed: {
@@ -31,25 +41,41 @@
               data:[p.category == null ? '':p.category.name,p.itemCode,p.description,p.unitOfMeasurement,p.serialNumber,p.active]
             }
         });
+      },
+      detailsTitle(){
+        return 'Product Details'
       }
+
     },
     created: function () {
       this.axios.get('/api/product/list').then((response) => {
-        // console.log(response.data);
-        // this.$store.state.product.products=response.data;
-        // console.log(this.$store.state.product.products);
-        // this.$store.actions.setProducts('setProducts',response.data);
         this.$store.dispatch('setProducts', response.data);
       })
     },
     methods: {
+      onClick(){
+        this.individualDetails = !this.individualDetails;
+        console.log(this.individualDetails)
+      },
       editProduct(productID) {
         console.log('edit')
         console.log(productID)
         //
       },
-      getProduct(productId) {
-        this.$store.dispatch('setProductId', productId)
+      productDetails(productId) {
+        console.log(productId)
+        this.axios.get('/api/product/findById?id=' + productId).then((response) => {
+          let p = response.data
+          this.objectDetails = {
+            'Category': p.category == null ? '':p.category.name,
+            'Item Code': p.itemCode,
+            'Description' : p.description,
+            'Unit Of Measurement' : p.unitOfMeasurement,
+            'Serial Number' : p.serialNumber,
+            'Status' : p.active == true ? 'Active':'Not Active'
+          }
+          console.log(this.objectDetails)
+        })
       },
       deleteProduct(product) {
         console.log('delete')
@@ -59,11 +85,11 @@
     },
     components: {
       appHeader: Header,
-      productTable: ProductTable
+      productTable: ProductTable,
+      productDetails: ProductDetails
     }
   }
 </script>
 
 <style scoped>
-
 </style>

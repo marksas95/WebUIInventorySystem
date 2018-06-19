@@ -23,4 +23,9 @@
 </script>
 
 <style>
+  body {
+    background-color: snow;
+    animation: step-start;
+    animation-duration: 1s;
+  }
 </style>
