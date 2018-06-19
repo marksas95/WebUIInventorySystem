@@ -14,10 +14,11 @@
         <template v-for="value in x.data">
           <th>{{value}}</th>
         </template>
-          <th>
-            <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
-            <button @click="onDelete(x.id)" class="btn btn-danger">Delete</button>
-          </th>
+        <th>
+          <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
+          <button @click="onDelete(x.id)" class="btn btn-danger">Delete</button>
+            <button @click="onDetails(x.id); onClick();" class="btn btn-default">Details</button>
+        </th>
       </tr>
       </tbody>
 
@@ -26,12 +27,12 @@
 </template>
 
 <script>
+
   export default {
     data() {
-      return {
-      }
+      return {}
     },
-    props:{
+    props: {
       tableHeaders: {
         type: Array,
         default: []
@@ -40,21 +41,28 @@
         type: Array,
         default: []
       },
-      onEdit:{
-        type:Function,
-        default: () => {}
+      onEdit: {
+        type: Function,
+        default: () => {
+        }
       },
-      onDelete:{
-        type:Function,
-        default: () => {}
+      onDelete: {
+        type: Function,
+        default: () => {
+        }
+      },
+      onDetails: {
+        type: Function,
+        default: () => {
+        }
+      },
+      onClick: {
+        type: Function,
+        default: () => {
+        }
       }
     },
-    computed:{
-
-    },
-    created: function () {
-    },
-    methods:{
+    methods: {
     }
   }
 </script>
