@@ -19,6 +19,7 @@
             <li class="active"> <router-link to="/warehouses" active-class="active" exact><a href="#">Warehouse</a></router-link></li>
             <li class="active"><router-link to="/products" active-class="active" exact><a href="#">Products</a></router-link></li>
             <li class="active"> <router-link to="/categories" active-class="active" exact><a href="#">Category</a></router-link></li>
+            <li class="active"> <router-link to="/suppliers" active-class="active" exact><a href="#">Suppliers</a></router-link></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">

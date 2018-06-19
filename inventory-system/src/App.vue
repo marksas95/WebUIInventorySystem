@@ -2,7 +2,6 @@
   <div>
     <appNavigationBar></appNavigationBar>
     <div class="container">
-
       <router-view></router-view>
     </div>
   </div>
