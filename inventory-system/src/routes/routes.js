@@ -5,6 +5,7 @@ import ProductDetails from '../components/BaseDetails.vue'
 import Category from '../pages/category/Category.vue'
 import Warehouse from '../pages/warehouse/Warehouse'
 import supplierModule from './modules/supplier-module'
+import categoryModule from './modules/category-module';
 
 export const routes = [
   //{path: '', component: List},
@@ -14,5 +15,6 @@ export const routes = [
   {path: '/details', component:ProductDetails},
   {path: '/categories', component:Category},
   {path: '/warehouses', component:Warehouse},
-  supplierModule
+  supplierModule,
+  categoryModule
 ];

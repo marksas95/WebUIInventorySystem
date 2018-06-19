@@ -1,8 +1,5 @@
 <template>
   <div>
-   
-
-
     <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
@@ -17,7 +14,7 @@
 <script>
 
 import CategoryTable from "../../components/BaseTable.vue";
-
+import category from "../../store/modules/category";
 
 
 export default {
