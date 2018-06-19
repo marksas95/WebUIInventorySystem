@@ -4,7 +4,7 @@ import MainLayout from '../../layouts/MainLayout.vue';
 
 export default {
   path: '/warehouses',
-  component: {
+  components: {
     default: MainLayout
   },
   children:[
