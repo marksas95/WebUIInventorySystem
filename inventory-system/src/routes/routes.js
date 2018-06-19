@@ -1,10 +1,10 @@
 import ProductCreate from '../pages/products/ProductForm.vue'
 import Home from '../pages/Home/Home.vue'
 import ProductDetails from '../components/BaseDetails.vue'
-import Warehouse from '../pages/warehouse/Warehouse'
 import supplierModule from './modules/supplier-module'
 import productModule from './modules/product-module'
-import categoryModule from './modules/category-module'
+import categoryModule from './modules/category-module';
+import warehouseModule from './modules/warehouse-module';
 
 
 export const routes = [
@@ -15,6 +15,6 @@ export const routes = [
   {path: '/warehouses', component:Warehouse},
   supplierModule,
   productModule,
-  categoryModule
-
+  categoryModule,
+  warehouseModule
 ];

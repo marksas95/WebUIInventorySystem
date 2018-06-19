@@ -9,6 +9,7 @@
 
 <script>
   import WarehouseTable from '../../components/BaseTable'
+  import warehouse from "../../store/modules/warehouse.js";
 
   export default {
     name: "Warehouse",
