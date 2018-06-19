@@ -6,6 +6,8 @@ import Category from '../pages/category/Category.vue'
 import Warehouse from '../pages/warehouse/Warehouse'
 import supplierModule from './modules/supplier-module'
 import categoryModule from './modules/category-module';
+import warehouseModule from './modules/warehouse-module';
+
 
 export const routes = [
   //{path: '', component: List},
@@ -13,8 +15,7 @@ export const routes = [
   {path: '/create', component:ProductCreate},
   {path: '/products', component:Products},
   {path: '/details', component:ProductDetails},
-  {path: '/categories', component:Category},
-  {path: '/warehouses', component:Warehouse},
   supplierModule,
-  categoryModule
+  categoryModule,
+  warehouseModule
 ];
