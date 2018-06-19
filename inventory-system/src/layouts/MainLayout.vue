@@ -1,9 +1,15 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <appNavigationBar></appNavigationBar>
+    <div class="container">
+      <router-view></router-view>
+    </div>
+  </div>
+
 </template>
 
 <script>
-  import navigationBar from './components/NavigationBar.vue'
+  import navigationBar from '../components/NavigationBar.vue'
   export default {
     data() {
       return {

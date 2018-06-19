@@ -22,6 +22,7 @@ export default {
     editSupplier(supplierId) {
       console.log('edit')
       console.log(supplierId)
+      this.$router.push({ path:`/suppliers/${supplierId}`})
     },
     deleteSupplier(supplierId) {
       console.log('delete')
