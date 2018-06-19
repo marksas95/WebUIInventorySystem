@@ -1,10 +1,11 @@
 <template>
   <div>
     <appHeader></appHeader>
+    <p>{{id}}</p>
     <div class="container">
       <form>
         <div class="row">
-          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">            
+          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
               <div class="form-group">
                 <label for="category">Category</label>
                 <select
@@ -12,7 +13,7 @@
                   class="form-control"
                   v-model="categories">
                   <option v-for="category in categories"
-                          :selected="category.name == 'mix'">{{category.name}}</option>
+                          >{{product.category.name}}dfdf</option>
                 </select>
               </div>
             <div class="form-group">
@@ -123,28 +124,31 @@
 </template>
 
 <script>
-  import Header from './Header.vue'
+  import Header from '../../components/products/Header.vue'
 
   export default {
     data() {
       return {
         product: [],
         categories:[
-          {
-            name:'mix'
-          },
-          {
-            name:'well'
-          },
-          {
-            name:'sip'
-          }
         ]
       }
     },
     methods: {},
     components: {
       appHeader: Header
+    },
+    created(){
+      this.product = this.$store.getters.getProduct(parseInt(this.id))
+      this.categories = this.$store.state.category.categories
+      console.log(this.product)
+      console.log(this.categories)
+    },
+    props:{
+      id:{
+        type:String,
+        default: ''
+      }
     }
   }
 </script>

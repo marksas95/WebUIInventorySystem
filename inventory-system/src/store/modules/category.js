@@ -14,7 +14,7 @@ const getters = {
 
 
 const mutations = {
-  setCategory: (state, categories) => {
+  setCategories: (state, categories) => {
     state.categories = categories;
   },
   setCategoryId: (state, categories) =>{
@@ -25,11 +25,11 @@ const mutations = {
 
 
 const actions = {
-	setCategory: ({commit},categories) => {
-		commit('setCategory', categories );
+	setCategories: ({commit},categories) => {
+		commit('setCategories', categories );
 	},
 	setCategoryId: ({commit},categoryId) => {
-		commit('setCategory', categoryId );
+		commit('setCategories', categoryId );
 	}
 }
 

@@ -60,7 +60,7 @@
       editProduct(productID) {
         console.log('edit')
         console.log(productID)
-        //
+        this.$router.push({path:`/products/${productID}`})
       },
       getProduct(productId) {
         console.log(productId)

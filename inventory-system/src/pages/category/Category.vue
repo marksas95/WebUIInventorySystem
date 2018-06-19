@@ -2,9 +2,9 @@
   <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
-  :on-edit = "editCategory" 
+  :on-edit = "editCategory"
   :on-delete = "deleteCategory"
-                
+
                 />
 </template>
 
@@ -34,7 +34,7 @@ export default {
   created() {
     this.axios.get("api/category/list").then(response => {
       console.log(response.data);
-      this.$store.dispatch("setCategory", response.data);
+      this.$store.dispatch("setCategories", response.data);
     });
   },
   methods: {

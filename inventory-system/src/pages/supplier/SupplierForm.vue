@@ -1,28 +1,22 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-sm-6 col-md-12 border">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" v-model="supplier.name">
+      <form>
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label for="itemCode">Name</label>
+            <input
+              type="text"
+              id="itemCode"
+              class="form-control"
+              v-model.lazy="supplier.name">
+          </div>
+          <div class="row text-right">
+            <button class="btn btn-primary" @click="onSave">Save</button>
+            <button class="btn btn-primary" @click="onCancel">Cancel</button>
+          </div>
         </div>
-
-      </div>
-      <div class="col-xs-6 border">
-        <input type="text" placeholder="Search" v-model="supplier.name">
-      </div>
-
-    </div>
-    <div class="row">
-      <div class="col-xs-4 border">
-        <input type="text" placeholder="Search" v-model="supplier.name">
-      </div>
-      <div class="col-xs-4 border">
-        <input type="text" placeholder="Search" v-model="supplier.name">
-      </div>
-      <div class="col-xs-4 border">
-        <input type="text" placeholder="Search" v-model="supplier.name">
-      </div>
+      </form>
 
     </div>
 
@@ -47,13 +41,18 @@
     created() {
       console.log(this.id)
       this.supplier = this.$store.getters.getSupplier(parseInt(this.id))
+    },
+    methods: {
+      onSave(){
+        this.$router.push({ path:'/suppliers'})
+      },
+      onCancel(){
+        this.$router.push({ path:'/suppliers'})
+      }
     }
   }
 </script>
 
 <style scoped>
-  .border {
-  border-color: red;
-    border-style: solid ;
-  }
+
 </style>

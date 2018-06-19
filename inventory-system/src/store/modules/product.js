@@ -10,6 +10,9 @@ const getters = {
     },
     getCategory: (state) => (productId) => {
         return state.products.find((e) => e.id === productId).category;
+    },
+    getProduct: (state) => (productId) => {
+      return state.products.find((e) => e.id === productId)
     }
   }
 ;
