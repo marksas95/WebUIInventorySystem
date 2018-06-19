@@ -1,20 +1,29 @@
 <template>
-  <categoryTable
+  <div>
+   
+
+
+    <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
   :on-edit = "editCategory" 
   :on-delete = "deleteCategory"
                 
                 />
+  </div>
+  
 </template>
 
 <script>
+
 import CategoryTable from "../../components/BaseTable.vue";
+
+
 
 export default {
   name: "Category",
   components: {
-    categoryTable: CategoryTable
+    categoryTable: CategoryTable,
   },
   data() {
     return {

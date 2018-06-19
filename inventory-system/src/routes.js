@@ -6,6 +6,7 @@ import Category from './pages/category/Category.vue'
 import Warehouse from './pages/warehouse/Warehouse'
 import Supplier from './pages/supplier/Supplier.vue'
 
+
 export const routes = [
   //{path: '', component: List},
   {path: '', component:Home},
