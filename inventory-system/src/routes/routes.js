@@ -12,7 +12,6 @@ export const routes = [
   {path: '/', component:Home},
   {path: '/create', component:ProductCreate},
   {path: '/details', component:ProductDetails},
-  {path: '/warehouses', component:Warehouse},
   supplierModule,
   productModule,
   categoryModule,

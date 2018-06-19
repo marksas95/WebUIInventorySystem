@@ -1,7 +1,6 @@
 <template>
   <div>
     <appHeader></appHeader>
-    <p>{{id}}</p>
     <div class="container">
       <form>
         <div class="row">
@@ -11,9 +10,10 @@
                 <select
                   id="category"
                   class="form-control"
-                  v-model="categories">
+                  v-model="product.category == null ? '':product.category.name"
+                  >
                   <option v-for="category in categories"
-                          >{{product.category.name}}dfdf</option>
+                      :selected="category == (product.category == null ? '':product.category.name)">{{category.name}}</option>
                 </select>
               </div>
             <div class="form-group">
@@ -109,12 +109,10 @@
             </label>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <button
-              class="btn btn-primary"
-              @click.prevent="submitted">Create
-            </button>
+        <div class="row col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div class="row text-right">
+            <button class="btn btn-primary" @click="onSave">Save</button>
+            <button class="btn btn-primary" @click="onCancel">Cancel</button>
           </div>
         </div>
       </form>
@@ -129,12 +127,18 @@
   export default {
     data() {
       return {
-        product: [],
-        categories:[
-        ]
+        product: {},
+        categories:{}
       }
     },
-    methods: {},
+    methods: {
+      onSave(){
+        this.$router.push({ path:'/products'})
+      },
+      onCancel(){
+        this.$router.push({ path:'/products'})
+      }
+    },
     components: {
       appHeader: Header
     },
