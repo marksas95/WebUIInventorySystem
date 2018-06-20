@@ -4,7 +4,9 @@ const state = {
 };
 
 const getters = {
-
+      getWarehouse: (state)=> (warehouseId)=>{
+        return state.warehouses.find(e => e.id === warehouseId);
+      }
   }
 ;
 
