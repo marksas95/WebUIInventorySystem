@@ -80,6 +80,13 @@
       deleteProduct(product) {
         console.log('delete')
         console.log(product)
+        if(confirm ('Are you sure?')){
+        this.$router.push({ path:'/products'});
+            
+        }else{
+        this.$router.push({ path:'/products'});
+
+        }
       }
 
     },
