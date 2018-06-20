@@ -2,7 +2,9 @@
   <div>
     <appNavigationBar></appNavigationBar>
     <div class="container">
-      <router-view></router-view>
+      <transition name="fade" >
+        <router-view></router-view>
+      </transition>
     </div>
   </div>
 
@@ -22,10 +24,18 @@
   }
 </script>
 
-<style>
-  body {
-    background-color: snow;
-    animation: step-start;
-    animation-duration: 1s;
+<style scoped>
+  .face-enter{
+    opacity: 0;
+  }
+.fade-enter-alive{
+    transition: opacity 1s;
+}
+  .fade-leave{
+
+  }
+  .fade-leave-active{
+    transition: opacity 1s;
+    opacity: 0;
   }
 </style>

@@ -1,10 +1,10 @@
   <template>
-  <div>
+  <div class="background panel">
     <table class="table table-hover">
       <thead>
       <tr>
         <template v-for="tableHeader in tableHeaders">
-          <th>{{tableHeader}}</th>
+          <th class=""><strong>{{tableHeader}}</strong></th>
         </template>
         <th class="col-md-3 text-center">Actions</th>
       </tr>
@@ -12,7 +12,7 @@
       <tbody>
       <tr v-for="x in tableData" @click="click(x)">
         <template v-for="value in x.data">
-          <th>{{value}}</th>
+          <th><small>{{value}}</small></th>
         </template>
         <th class="col-md-3 text-right">
           <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
@@ -72,5 +72,10 @@
 
 
 <style scoped>
-
+  div .background {
+    background-color: snow;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
 </style>

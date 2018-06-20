@@ -18,8 +18,14 @@
 
 <style>
   body {
-    background-color: snow;
-    animation: step-start;
-    animation-duration: 1s;
+    background-image: url("./assets/background.jpg");
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
   }
+  h1{
+    color: white;
+  }
+
 </style>
