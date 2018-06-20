@@ -8,7 +8,7 @@
         </h3>
       </div>
       <div class="class panel-body">
-        <div class="">
+        <div   class="overflow">
           <table class="table table-hover">
           <thead>
             <tr>
@@ -16,9 +16,9 @@
             </tr>
           </thead>
           <tbody>
-              <tr v-for="rows in warehouseData.goodQuantityProducts">
-                <th v-for="column in rows"><small>{{column}}</small></th>
-              </tr>
+            <tr v-for="rows in warehouseData.goodQuantityProducts">
+              <th v-for="column in rows"><small>{{column}}</small></th>
+            </tr>
           </tbody>
           </table>
         </div>
@@ -55,5 +55,9 @@
 </script>
 
 <style scoped>
-
+  div .overflow {
+    overflow: auto;
+    width: unset;
+    height: 300px;
+  }
 </style>
