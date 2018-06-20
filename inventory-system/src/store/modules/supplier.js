@@ -6,7 +6,6 @@ const state = {
 
 
 const getters ={
-
   getSupplier: (state) => (supplierId) => {
     return state.suppliers.find(e => e.id === supplierId);
   }

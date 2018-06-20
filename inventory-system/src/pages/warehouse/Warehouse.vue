@@ -61,7 +61,7 @@
       editWarehouse(warehouseId) {
         console.log('edit')
         console.log(warehouseId)
-        this.$router.push({path: `/warehouses/${warehhouseId}`})
+        this.$router.push({path: `/warehouses/${warehouseId}`})
       },
       getWarehouse(warehouseId) {
         console.log(warehouseId)
