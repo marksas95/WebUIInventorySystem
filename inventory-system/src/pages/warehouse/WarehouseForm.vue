@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<appHeader></appHeader>
+		
 		<div class="container">
 			<form>
 	
@@ -35,7 +35,7 @@
 
 
 <script>
-	import Header from "../../components/products/Header.vue";
+	
 	export default {
 		data() {
 			return {
