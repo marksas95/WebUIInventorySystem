@@ -1,4 +1,7 @@
 <template>
+<div>
+  <h1>Hello World!</h1>
+</div>
   <!--<div class="class col-sm-6 col-md-4">-->
     <!--<div class="class panel panel-success">-->
       <!--<div class="class panel-heading">-->
