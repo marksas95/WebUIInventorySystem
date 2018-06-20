@@ -7,7 +7,7 @@
           <div class="panel-heading">
             <h4>Product Details</h4>
           </div>
-          <div class="panel-body">            
+          <div class="panel-body">
             <p>Category: {{product.category == null ? '':product.category.name}}</p>
             <p>Item Code: {{product.itemCode}}</p>
             <p style="white-space: pre">Description: {{product.description}}</p>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import Header from './Header.vue'
+  import Header from '../Header.vue'
 
 
   export default {

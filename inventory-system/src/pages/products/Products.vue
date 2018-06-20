@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import Header from '../../components/products/Header.vue'
+  import Header from '../../components/Header.vue'
   import ProductTable from '../../components/BaseTable.vue'
   import ProductDetails from '../../components/BaseDetails'
 
@@ -82,7 +82,7 @@
         console.log(product)
         if(confirm ('Are you sure?')){
         this.$router.push({ path:'/products'});
-            
+
         }else{
         this.$router.push({ path:'/products'});
 

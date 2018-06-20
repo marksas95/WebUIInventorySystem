@@ -122,7 +122,7 @@
 </template>
 
 <script>
-  import Header from '../../components/products/Header.vue'
+  import Header from '../../components/Header.vue'
 
   export default {
     data() {
