@@ -16,7 +16,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"> <router-link to="/warehouses" active-class="active" exact><a href="#">Warehouse</a></router-link></li>
+            <li> <a href="#" @click="toWarehouses">Warehouse</a></li>
             <li class="active"><router-link to="/products" active-class="active" exact><a href="#">Products</a></router-link></li>
             <li class="active"> <router-link to="/categories" active-class="active" exact><a href="#">Category</a></router-link></li>
             <li class="active"> <router-link to="/suppliers" active-class="active" exact><a href="#">Suppliers</a></router-link></li>
@@ -54,7 +54,21 @@
 
 <script>
     export default {
-        name: "NavigationBar"
+        name: "NavigationBar",
+      methods:{
+          toWarehouses(){
+            this.$router.push({ path:'/warehouses'})
+          },
+          toProducts(){
+
+          },
+          toCategories(){
+
+          },
+          toSuppliers(){
+
+          }
+      }
     }
 </script>
 
