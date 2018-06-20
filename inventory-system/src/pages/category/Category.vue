@@ -12,6 +12,7 @@
 <script>
 
 import CategoryTable from "../../components/BaseTable.vue";
+import category from "../../store/modules/category";
 
 export default {
   name: "Category",
@@ -43,6 +44,7 @@ export default {
     editCategory(categoryId) {
       console.log("edit");
       console.log(categoryId);
+      this.$router.push({path:`/categories/${categoryId}`})
     },
     deleteCategory(categoryId) {
       console.log("delete");
