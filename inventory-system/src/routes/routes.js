@@ -9,6 +9,7 @@ import homeModule from './modules/home-module'
 
 export const routes = [
   //{path: '', component: List},
+  {path: '*' , redirect: '/'},
   {path: '/create', component:ProductCreate},
   {path: '/details', component:ProductDetails},
   supplierModule,

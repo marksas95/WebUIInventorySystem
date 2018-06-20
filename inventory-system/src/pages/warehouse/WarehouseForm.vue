@@ -35,40 +35,40 @@
 
 
 <script>
-	
-	export default {
-		data() {
-			return {
-				warehouse: {}
-			}
-		},
-		methods:{
-			onCancel(){
-				this.$router.push({path: '/warehouses'})
-			},
-      onSave(){
-        this.$router.push({path: '/warehouses'})
-      }
-		},
-		components:{
-			appHeader: Header
-		},
-		created(){
-			this.warehouse = this.$store.getters.getWarehouse(parseInt(this.id))
-			console.log(this.warehouse)
-		},
-		props:{
-			id:{
-				type:String,
-				default:''
-			}
-		}
 
+// import WarehouseHeader from "../../components/warehouse/WarehouseHeader.vue";
 
-	};
+export default {
+  data() {
+    return {
+      warehouse: {}
+    };
+  },
+  methods: {
+    onCancel() {
+      this.$router.push({ path: "/warehouses" });
+    },
+    onSave() {
+      this.$router.push({ path: "/warehouses" });
+    }
+  },
+  components: {
+	//   appHeader: WarehouseHeader
+
+  },
+  created() {
+    this.warehouse = this.$store.getters.getWarehouse(parseInt(this.id));
+    console.log(this.warehouse);
+  },
+  props: {
+    id: {
+      type: String,
+      default: ""
+    }
+  }
+};
 </script>
 
 
 <style>
-
 </style>
