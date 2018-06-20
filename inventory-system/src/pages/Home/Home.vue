@@ -1,41 +1,49 @@
 <template>
 <div>
-  <h1>Hello World!</h1>
+  <h1 class="text-center">Stocks</h1>
+  <div v-for="warehouse in warehousesData">
+    <warehouseStocks
+      :warehouseData="warehouse"/>
+  </div>
+
 </div>
-  <!--<div class="class col-sm-6 col-md-4">-->
-    <!--<div class="class panel panel-success">-->
-      <!--<div class="class panel-heading">-->
-        <!--<h3 class="panel-title">-->
-          <!--{{stock.name}}-->
-          <!--<small>(Price: {{stock.price}})</small>-->
-        <!--</h3>-->
-      <!--</div>-->
-      <!--<div class="class panel-body">-->
-        <!--<div class="class pull-left">-->
-          <!--<input type="Number"-->
-                 <!--class="form-control"-->
-                 <!--placeholder="Quantity"-->
-                 <!--v-model="quantity">-->
-        <!--</div>-->
-        <!--<div class="pull-right">-->
-          <!--<button-->
-            <!--class="btn btn-success"-->
-            <!--@click = ""-->
-            <!--:disabled="quantity <= 0 || Number.isInteger(quantity)">Buy-->
-          <!--</button>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
 </template>
 
 <script>
+  import warehouseStocks from '../../components/WarehouseStocks'
     export default {
         name: "Home.vue",
       data(){
           return{
 
           }
+      },
+      computed: {
+        warehousesData() {
+          return this.$store.state.warehouse.warehouses.map(o => {
+              return {
+                'name':o.name,
+                'active':o.active === true ? 'Active':'Not Active',
+                'goodQuantityProducts':o.goodQuantityProducts.map(o => {
+                  return {
+                    'itemCode':o.product.itemCode,
+                    'quantity':o.quantity,
+                    'status':o.product.active === true ? 'Active':'Not Active'
+                  }
+                })
+              }
+            }
+          )
+        }
+      },
+      created(){
+        this.axios.get('/api/warehouse/list').then(response => {
+          this.$store.dispatch('setWarehouses', response.data)
+        })
+        console.log(this.warehouses)
+      },
+      components:{
+          warehouseStocks
       }
     }
 </script>
