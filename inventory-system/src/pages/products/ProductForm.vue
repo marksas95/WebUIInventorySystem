@@ -145,8 +145,6 @@
     created(){
       this.product = this.$store.getters.getProduct(parseInt(this.id))
       this.categories = this.$store.state.category.categories
-      console.log(this.product)
-      console.log(this.categories)
     },
     props:{
       id:{

@@ -6,7 +6,7 @@
         <template v-for="tableHeader in tableHeaders">
           <th>{{tableHeader}}</th>
         </template>
-        <th>Actions</th>
+        <th class="col-md-3 text-center">Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -14,7 +14,7 @@
         <template v-for="value in x.data">
           <th>{{value}}</th>
         </template>
-        <th>
+        <th class="col-md-3 text-right">
           <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
           <button @click="onDelete(x.id)" class="btn btn-danger">Delete</button>
             <button @click="onDetails(x.id); onClick();" class="btn btn-default">Details</button>

@@ -36,14 +36,12 @@ export default {
   },
   created() {
     this.axios.get("api/category/list").then(response => {
-      console.log(response.data);
       this.$store.dispatch("setCategories", response.data);
     });
   },
   methods: {
     editCategory(categoryId) {
-      console.log("edit");
-      console.log(categoryId);
+      console.log('edit')
       this.$router.push({path:`/categories/${categoryId}`})
     },
     deleteCategory(categoryId) {

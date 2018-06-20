@@ -8,7 +8,7 @@ const getters = {
     getActiveProducts: state => {
       return state.products.filter((val) => val.active);
     },
-    getCategory: (state) => (productId) => {
+    getCategories: (state) => (productId) => {
         return state.products.find((e) => e.id === productId).category;
     },
     getProduct: (state) => (productId) => {

@@ -5,10 +5,9 @@ const state = {
 };
 
 
-
 const getters = {
-  getCategories: (state) => (categoryId) => {
-    return state.categories.find((e) => e.id === categoryId);
+  getCategory: (state) => (categoryId) => {
+    return state.categories.find((e) => e.id === categoryId)
   }
 };
 

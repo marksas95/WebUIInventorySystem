@@ -25,32 +25,32 @@
 </template>
 
 <script>
-export default {
-  name: "CategoryForm",
-  props: {
-    id:{
-		type: String,
-		default: ()=> ''
-	}
-  },
-  data(){
-	  return{
-		  category:{}
-	  }
-  },
-  created(){
-	  console.log(this.id)
-	  this.category = this.$store.getters.getCategories(parseInt(this.id))
-  },
-  methods:{
-	  onSave(){
-		  this.$router.push({path: '/categories' })
-	  },
-	  onCancel(){
-		  this.$router.push({path: '/categories'})
-	  }
+  export default {
+    name: "CategoryForm",
+    props: {
+      id: {
+        type: String,
+        default: () => ''
+      }
+    },
+    data() {
+      return {
+        category: {}
+      }
+    },
+    created() {
+      this.category = this.$store.getters.getCategory(parseInt(this.id))
+
+    },
+    methods: {
+      onSave() {
+        this.$router.push({path: '/categories'})
+      },
+      onCancel() {
+        this.$router.push({path: '/categories'})
+      }
+    }
   }
-};
 </script>
 
 

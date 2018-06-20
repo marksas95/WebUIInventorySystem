@@ -3,7 +3,7 @@
 		
 		<div class="container">
 			<form>
-	
+
 				<div class="row">
 					<div class="form-group">
 						<label for="name">Name</label>
@@ -11,7 +11,7 @@
 					</div>
 					<div class="form-group">
 						<label for="location">Location</label>
-						<input type="text" id="location" class="form-control" v-model.lazy="warehouse.location">
+						<input type="text" id="location" class="form-control" v-model.lazy="warehouse.address">
 					</div>
 					<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
 						<label for="description">Description</label><br>
@@ -19,7 +19,7 @@
 						<textarea id="description" rows="5" class="form-control" v-model.lazy="warehouse.description"></textarea>
 					</div>
 				</div>
-	
+
 				<div class="row col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 					<div class="row text-right">
 						<button class="btn btn-primary" @click="onSave">Save</button>
@@ -45,7 +45,10 @@
 		methods:{
 			onCancel(){
 				this.$router.push({path: '/warehouses'})
-			}
+			},
+      onSave(){
+        this.$router.push({path: '/warehouses'})
+      }
 		},
 		components:{
 			appHeader: Header
@@ -61,11 +64,11 @@
 			}
 		}
 
-	
+
 	};
 </script>
 
 
 <style>
-	
+
 </style>
