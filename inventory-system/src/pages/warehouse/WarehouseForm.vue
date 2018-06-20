@@ -7,11 +7,11 @@
 				<div class="row">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input type="text" id="itemCode" class="form-control" v-model.lazy="warehouse.name">
+						<input type="text" id="name" class="form-control" v-model.lazy="warehouse.name">
 					</div>
 					<div class="form-group">
 						<label for="location">Location</label>
-						<input type="text" id="itemCode" class="form-control" v-model.lazy="warehouse.location">
+						<input type="text" id="location" class="form-control" v-model.lazy="warehouse.location">
 					</div>
 					<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
 						<label for="description">Description</label><br>

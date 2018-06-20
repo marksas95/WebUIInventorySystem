@@ -40,7 +40,7 @@ export default {
   },
   created(){
 	  console.log(this.id)
-	  this.category = this.$store.getters.getCategory(parseInt(this.id))
+	  this.category = this.$store.getters.getCategories(parseInt(this.id))
   },
   methods:{
 	  onSave(){
