@@ -74,7 +74,7 @@
 <style scoped>
   div .background {
     background-color: snow;
-    height: 100vh;
+    height: align-self;
     background-size: cover;
     background-position: center;
   }

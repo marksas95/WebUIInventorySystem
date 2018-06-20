@@ -77,15 +77,12 @@
           console.log(this.productDetails)
         })
       },
-      deleteProduct(product) {
+      deleteProduct(productId) {
         console.log('delete')
-        console.log(product)
-        if(confirm ('Are you sure?')){
-        this.$router.push({ path:'/products'});
-
-        }else{
-        this.$router.push({ path:'/products'});
-
+        console.log(productId)
+        if(confirm ('Are you sure you want to delete?')){
+        this.axios.delete('/api/product/delete?id=' + productId)
+        this.$router.push({ path:'/products/'});
         }
       }
 
