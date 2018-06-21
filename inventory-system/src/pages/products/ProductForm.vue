@@ -159,6 +159,8 @@
         if (this.id === 'new') {
           this.CREATE_PRODUCT(this.product).then((o) => {
             //Fixme
+
+            // Guba? - Mr.J
             console.log(o)
             this.$router.push('/products')
           }).catch()
@@ -167,6 +169,8 @@
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
             //puga guba ini
+            // Try ko fix - Mr. J
+
           })
           this.$router.push({path: '/products'})
 
