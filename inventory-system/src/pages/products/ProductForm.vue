@@ -158,13 +158,14 @@
       onSave() {
         if (this.id === 'new') {
           this.CREATE_PRODUCT(this.product).then(() =>{
-
           }) //Fixme
           this.$router.push({name:'product'})
         }
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
-            //puga guba ini //Fixme
+            //puga guba ini
+            // Try ko fix - Mr. J
+
           })
         }
       },
