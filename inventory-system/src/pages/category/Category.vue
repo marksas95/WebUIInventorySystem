@@ -13,6 +13,7 @@
 
 import CategoryTable from "../../components/BaseTable.vue";
 import category from "../../store/modules/category";
+import { mapActions } from "vuex";
 
 export default {
   name: "Category",
@@ -21,6 +22,7 @@ export default {
   },
   data() {
     return {
+      ...mapActions ['initCategory'],
       categoryHeaders: ["Name"]
     };
   },
@@ -47,6 +49,7 @@ export default {
     deleteCategory(categoryId) {
       console.log("delete");
       console.log(categoryId);
+      this.$store.dispatch('initCategory');
     }
   }
 };

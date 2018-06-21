@@ -1,3 +1,4 @@
+import Vue from 'vue'
 const state = {
   categories: [],
   categoryId: '',
@@ -15,7 +16,10 @@ const getters = {
 const mutations = {
   setCategories: (state, categories) => {
     state.categories = categories;
-  },
+	},
+	removeCategory: (state, category) =>{
+		state.categories.delete(category)
+	}
   // setCategoryId: (state, categories) =>{
 	//   state.categoryId = categoryId;
   // }
@@ -24,12 +28,25 @@ const mutations = {
 
 
 const actions = {
+
+	initCategory: ({commit}) => {
+		Vue.axios.get('api/category/list').then((response)=>{
+			commit('setCategories', response.data)
+	})
+	},
+
 	setCategories: ({commit},categories) => {
 		commit('setCategories', categories );
 	},
-	// setCategoryId: ({commit},categoryId) => {
-	// 	commit('setCategories', categoryId );
-	// }
+
+	deleteCategory: ({commit}, category)=>{
+		Vue.axios.delete('api/category/delete', category).then((response) =>{
+			console.log(response.data)
+			commit('removeCategory', response.data)
+			resolve(response.data)
+		})
+	}
+	
 }
 
 
