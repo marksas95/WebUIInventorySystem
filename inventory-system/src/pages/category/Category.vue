@@ -37,9 +37,12 @@ export default {
     }
   },
   created() {
-    this.axios.get("api/category/list").then(response => {
-      this.$store.dispatch("setCategories", response.data);
-    });
+      if (this.$store.state.category.categories.length === 0){
+        console.log('list')
+            this.$store.dispatch('initCategory'); 
+      }else{
+        console.log('oops')
+      }
   },
   methods: {
     editCategory(categoryId) {
@@ -49,7 +52,8 @@ export default {
     deleteCategory(categoryId) {
       console.log("delete");
       console.log(categoryId);
-      this.$store.dispatch('initCategory');
+      // this.axios.delete("api/category/delete?id=" + categoryId);
+      this.$store.dispatch('deleteCategory');
     }
   }
 };

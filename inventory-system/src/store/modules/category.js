@@ -17,8 +17,8 @@ const mutations = {
   setCategories: (state, categories) => {
     state.categories = categories;
 	},
-	removeCategory: (state, category) =>{
-		state.categories.delete(category)
+	removeCategory: (state, categoryId) =>{
+		state.categories.delete(categoryId)
 	}
   // setCategoryId: (state, categories) =>{
 	//   state.categoryId = categoryId;
@@ -39,8 +39,8 @@ const actions = {
 		commit('setCategories', categories );
 	},
 
-	deleteCategory: ({commit}, category)=>{
-		Vue.axios.delete('api/category/delete', category).then((response) =>{
+	deleteCategory: ({commit}, categoryId)=>{
+		Vue.axios.delete('api/category/delete?id=', categoryId).then((response) =>{
 			console.log(response.data)
 			commit('removeCategory', response.data)
 			resolve(response.data)
