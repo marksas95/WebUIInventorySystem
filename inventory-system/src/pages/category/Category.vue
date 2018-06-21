@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      ...mapActions ['initCategory', 'deleteCategory'],
+      
       categoryHeaders: ["Name"]
     };
   },
@@ -45,6 +45,11 @@ export default {
       }
   },
   methods: {
+
+...mapActions 
+    (['initCategory',
+      'deleteCategory']),
+
     editCategory(categoryId) {
       console.log('edit')
       this.$router.push({path:`/categories/${categoryId}`})
