@@ -17,9 +17,9 @@ const mutations = {
   setCategories: (state, categories) => {
     state.categories = categories;
 	},
-	removeCategory: (state, categoryId) =>{
-		state.categories.delete(categoryId)
-	}
+	// removeCategory: (state, categoryId) =>{
+	// 	state.categories.delete(categoryId)
+	// }
   // setCategoryId: (state, categories) =>{
 	//   state.categoryId = categoryId;
   // }
@@ -30,8 +30,9 @@ const mutations = {
 const actions = {
 
 	initCategory: ({commit}) => {
-		Vue.axios.get('api/category/list').then((response)=>{
-			commit('setCategories', response.data)
+		return Vue.axios.get('/api/category/list').then((response)=>{
+			commit('setCategories', response.data);
+			return (response.data)
 	})
 	},
 
@@ -40,14 +41,17 @@ const actions = {
 	},
 
 	deleteCategory: ({commit}, categoryId)=>{
-		Vue.axios.delete('api/category/delete?id=', categoryId).then((response) =>{
-			console.log(response.data)
-			commit('removeCategory', response.data)
-			resolve(response.data)
+		return new Promise((resolve, reject)=> {
+			Vue.axios.delete('/api/category/delete?id='+ categoryId).then((response) =>{
+				Vue.axios.get('/api/category/list').then((response)=>{
+					console.log(response.data)
+					commit('setCategories', response.data)
+					resolve(response.data)
+				})	
+			})
 		})
 	}
-	
-}
+};
 
 
 export default{

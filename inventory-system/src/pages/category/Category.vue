@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      ...mapActions ['initCategory'],
+      ...mapActions ['initCategory', 'deleteCategory'],
       categoryHeaders: ["Name"]
     };
   },
@@ -53,7 +53,7 @@ export default {
       console.log("delete");
       console.log(categoryId);
       // this.axios.delete("api/category/delete?id=" + categoryId);
-      this.$store.dispatch('deleteCategory');
+      this.deleteCategory(categoryId)
     }
   }
 };
