@@ -41,7 +41,13 @@
         return this.$store.state.product.products.map(p => {
             return {
               id:p.id,
-              data:[p.category == null ? '':p.category.name,p.itemCode,p.description,p.unitOfMeasurement,p.serialNumber,p.active]
+              data:[
+                p.category == null ? '':p.category.name,
+                p.itemCode,
+                p.description,
+                p.unitOfMeasurement,
+                p.serialNumber,
+                p.active== true? 'Active':'Not Active']
             }
         });
       },
@@ -73,7 +79,6 @@
         this.$router.push({path:`/products/${productID}`})
       },
       getProduct(productId) {
-        console.log(productId)
         this.axios.get('/api/product/findById?id=' + productId).then((response) => {
           let p = response.data
           this.productDetails = {

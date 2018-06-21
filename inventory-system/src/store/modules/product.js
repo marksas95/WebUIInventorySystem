@@ -45,9 +45,7 @@ const actions = {
         resolve(response.data)
       })
     })
-
-
-  },
+  }
 
 };
 
