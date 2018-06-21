@@ -48,7 +48,7 @@ export default {
 
 ...mapActions 
     (['initCategory',
-      'deleteCategory']),
+      'DELETE_CATEGORY']),
 
     editCategory(categoryId) {
       console.log('edit')
@@ -58,7 +58,7 @@ export default {
       console.log("delete");
       console.log(categoryId);
       // this.axios.delete("api/category/delete?id=" + categoryId);
-      this.deleteCategory(categoryId)
+      this.DELETE_CATEGORY(categoryId)
     }
   }
 };

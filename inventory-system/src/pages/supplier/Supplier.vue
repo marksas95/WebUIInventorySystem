@@ -11,6 +11,7 @@
 <script>
 import	SupplierTable from "../../components/BaseTable.vue";
 import supplier from "../../store/modules/supplier";
+import { mapActions } from 'vuex';
 export default {
 	name: 'Supplier',
 	data(){
@@ -19,14 +20,23 @@ export default {
     }
 	},
 	methods:{
+
+    ...mapActions([
+      'DELETE_SUPPLIERS'
+    ]),
+
     editSupplier(supplierId) {
       console.log('edit')
       console.log(supplierId)
       this.$router.push({ path:`/suppliers/${supplierId}`})
     },
     deleteSupplier(supplierId) {
-      console.log('delete')
-      console.log(supplierId)
+     
+        console.log('delete')
+        console.log(supplierId)
+        this.DELETE_SUPPLIERS(supplierId)
+     
+      
     }
 	},
 	components:{
