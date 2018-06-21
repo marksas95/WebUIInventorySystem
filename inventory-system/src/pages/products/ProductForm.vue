@@ -130,6 +130,7 @@
 
 <script>
   import Header from '../../components/Header.vue'
+  import {mapActions} from 'vuex'
 
   export default {
     data() {
@@ -150,18 +151,25 @@
       }
     },
     methods: {
+      ...mapActions([
+        'CREATE_PRODUCT',
+        'UPDATE_PRODUCT'
+      ]),
       onSave() {
         if (this.id === 'new') {
-
-          this.$store.dispatch('createProduct', this.product).then(() => {
+          this.CREATE_PRODUCT(this.product).then((o) => {
             //Fixme
+            console.log(o)
+            this.$router.push('/products')
           }).catch()
-          this.$router.push('/products')
 
         }
         else {
-          this.axios.post('/api/product/update', this.product)
+          this.UPDATE_PRODUCT(this.product).then(() =>{
+            //puga guba ini
+          })
           this.$router.push({path: '/products'})
+
         }
       },
       onCancel() {
@@ -180,7 +188,7 @@
       });
 
       if (this.id !== 'new') {
-        this.product = this.$store.getters.getProduct(parseInt(this.id))
+        this.product = this.$store.getters.GET_PRODUCT(parseInt(this.id))
       }
       // this.categories = this.$store.state.category.categories
     },
@@ -194,7 +202,4 @@
 </script>
 
 <style scoped>
-  div .light {
-    opacity: 0.5;
-  }
 </style>

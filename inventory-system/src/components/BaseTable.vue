@@ -10,7 +10,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="x in tableData" @click="click(x)">
+      <tr v-for="x in tableData" @click="">
         <template v-for="value in x.data">
           <th><small>{{value}}</small></th>
         </template>
