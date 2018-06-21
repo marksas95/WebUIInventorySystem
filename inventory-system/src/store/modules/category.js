@@ -7,6 +7,7 @@ const state = {
 
 
 const getters = {
+	
   getCategory: (state) => (categoryId) => {
     return state.categories.find((e) => e.id === categoryId)
   }
