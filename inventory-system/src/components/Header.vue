@@ -6,11 +6,21 @@
      <button class="btn btn-primary " @click="onNew">New</button>
 
       <div class="form-group col-md-2">
-        <label for="status" class="text-center col-md-offset-4" color="white">Status</label>
-        <select class="form-control" id="status">
+        <label for="statuss" class="text-center col-md-offset-4" color="white">Status</label>
+        <select class="form-control" id="statuss"
+          //butang ang binding diri
+        >
           <option value="">All</option>
           <option value="">Active Only</option>
           <option value="">Inactive Only</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="status" class="text-center col-md-offset-4" color="white">Category</label>
+        <select class="form-control" id="status">
+          <option value="">All</option>
+          <option value="">Elect</option>
+          <option value="">Fashion</option>
         </select>
       </div>
 
