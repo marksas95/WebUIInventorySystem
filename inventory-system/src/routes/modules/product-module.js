@@ -7,7 +7,7 @@ export default {
     default: MainLayout
   },
   children: [
-    {path: '', component: Product},
+    {path: '', component: Product, name: 'product'},
     {path: ':id', props: true, component: ProductForm}
   ]
 }

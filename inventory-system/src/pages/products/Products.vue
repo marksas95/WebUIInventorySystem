@@ -1,18 +1,21 @@
 <template>
   <div>
     <appHeader></appHeader>
-    <productTable v-show="!individualDetails"
-                  :table-headers="tableHeaders"
-                  :table-data="products"
-                  :on-edit="editProduct"
-                  :on-delete="deleteProduct"
-                  :on-details="getProduct"
-                  :on-click="onClick"/>
+    <div>
+      <productTable v-show="!individualDetails"
+                    :table-headers="tableHeaders"
+                    :table-data="products"
+                    :on-edit="editProduct"
+                    :on-delete="deleteProduct"
+                    :on-details="getProduct"
+                    :on-click="onClick"/>
 
-    <product-details v-show="individualDetails"
-                     :details-title="detailsTitle"
-                     :objectDetails="productDetails"
-                     :on-click="onClick"/>
+      <product-details v-show="individualDetails"
+                       :details-title="detailsTitle"
+                       :objectDetails="productDetails"
+                       :on-click="onClick"/>
+    </div>
+
   </div>
 </template>
 
@@ -40,7 +43,7 @@
         return this.$store.getters.getActiveProducts;
       },
       products() {
-        return this.$store.state.product.products.map(p => {
+        return this.$store.getters.getActiveProducts.map(p => {
           return {
             id: p.id,
             data: [

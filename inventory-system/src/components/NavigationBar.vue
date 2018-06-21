@@ -16,20 +16,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li> <a href="#" @click="toWarehouses">Warehouse</a></li>
+            <li> <a @click="toWarehouses">Warehouse</a></li>
             <li class="active"><router-link to="/products" active-class="active" exact><a href="#">Products</a></router-link></li>
             <li class="active"> <router-link to="/categories" active-class="active" exact><a href="#">Category</a></router-link></li>
             <li class="active"> <router-link to="/suppliers" active-class="active" exact><a href="#">Suppliers</a></router-link></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a>Action</a></li>
+                <li><a>Another action</a></li>
+                <li><a>Something else here</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a>Separated link</a></li>
               </ul>
             </li>
           </ul>

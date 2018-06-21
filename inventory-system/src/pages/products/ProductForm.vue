@@ -157,26 +157,19 @@
       ]),
       onSave() {
         if (this.id === 'new') {
-          this.CREATE_PRODUCT(this.product).then((o) => {
-            //Fixme
-            console.log(o)
-            this.$router.push('/products')
-          }).catch()
+          this.CREATE_PRODUCT(this.product).then(() =>{
 
+          }) //Fixme
+          this.$router.push({name:'product'})
         }
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
-            //puga guba ini
+            //puga guba ini //Fixme
           })
-          this.$router.push({path: '/products'})
-
         }
       },
       onCancel() {
-        this.$router.push({path: '/products'})
-      },
-      onOptionCategory(category) {
-        console.log(category)
+        this.$router.push({name:'product'})
       }
     },
     components: {
@@ -190,7 +183,6 @@
       if (this.id !== 'new') {
         this.product = this.$store.getters.GET_PRODUCT(parseInt(this.id))
       }
-      // this.categories = this.$store.state.category.categories
     },
     props: {
       id: {
