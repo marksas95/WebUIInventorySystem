@@ -8,7 +8,6 @@ export default {
   },
   children: [
     {path: '', component: Product},
-    {path: ':id', props: true, component: ProductForm},
-    {path: 'new', component: ProductForm}
+    {path: ':id', props: true, component: ProductForm}
   ]
 }

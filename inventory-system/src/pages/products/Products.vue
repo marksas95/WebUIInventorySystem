@@ -20,10 +20,13 @@
   import Header from '../../components/Header.vue'
   import ProductTable from '../../components/BaseTable.vue'
   import ProductDetails from '../../components/BaseDetails'
-
+  import {mapActions} from 'vuex'
   export default {
     data() {
       return {
+        ...mapActions[
+            'initProducts'
+          ],
         tableHeaders: ['Category', 'Item Code', 'Description', 'Unit of Measurement', 'Serial Number', 'Status'],
         individualDetails:false,
         productIdToPass:0,
@@ -48,9 +51,16 @@
 
     },
     created: function () {
-      this.axios.get('/api/product/list').then((response) => {
-        this.$store.dispatch('setProducts', response.data);
-      })
+      //change to map actions
+
+      if (this.$store.state.product.products.length === 0) {
+        console.log('create')
+        this.$store.dispatch('initProducts')
+      }else {
+        console.log('wala nag create')
+      }
+
+
     },
     methods: {
       onClick(){
@@ -81,6 +91,7 @@
         console.log('delete')
         console.log(productId)
         if(confirm ('Are you sure you want to delete?')){
+          //butangan sang method sa store sng product!!!!!!! kulang pani
         this.axios.delete('/api/product/delete?id=' + productId)
         this.$router.push({ path:'/products/'});
         }

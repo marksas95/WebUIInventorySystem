@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const state = {
   products: [],
   productId:'',
@@ -18,37 +20,35 @@ const getters = {
 ;
 
 const mutations = {
+  addProduct:(state,product) =>{
+    state.products.push(product)
+  },
   setProducts: (state, products) => {
     state.products = products;
-  },
-  setProductId: (state, productId) => {
-    state.productId = productId;
-  },
-  decrement: (state, payload) => {
-    state.counter -= payload;
   }
 };
 
 const actions = {
-  setProductId: ({commit}, productId) => {
-    commit('setProductId', productId);
+  // axios
+  initProducts: ({commit}) => {
+    // axios
+    Vue.axios.get('/api/product/list').then((response) => {
+      commit('setProducts', response.data);
+    })
   },
-  setProducts: ({commit}, products) => {
-    commit('setProducts', products);
+  createProduct: ({commit},product) => {
+    return new Promise((resolve, reject) => {
+      console.log(product)
+      Vue.axios.post('/api/product/create',product).then((response) =>{
+        console.log(response.data)
+        commit('addProduct',response.data)
+        resolve(response.data)
+      })
+    })
+
+
   },
-  decrement: ({commit}, payload) => {
-    commit('decrement', payload);
-  },
-  asyncIncrement: ({commit}, payload) => {
-    setTimeout(() => {
-      commit('increment', payload.by);
-    }, payload.duration);
-  },
-  asyncDecrement: ({commit}, payload) => {
-    setTimeout(() => {
-      commit('decrement', payload.by);
-    }, payload.duration);
-  }
+
 };
 
 export default {

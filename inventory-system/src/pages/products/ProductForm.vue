@@ -130,13 +130,12 @@
 
 <script>
   import Header from '../../components/Header.vue'
-  import product from "../../store/modules/product";
 
   export default {
     data() {
       return {
         product: {
-          category:{},
+          category: {},
           name: '',
           itemCode: '',
           description: '',
@@ -152,18 +151,23 @@
     },
     methods: {
       onSave() {
-        if(this.id === 'new'){
-          this.axios.post('/api/product/create',this.product)
-          this.$router.push({path: '/products'})
-        } else {
-          this.axios.post('/api/product/update',this.product)
+        if (this.id === 'new') {
+
+          this.$store.dispatch('createProduct', this.product).then(() => {
+            //Fixme
+          }).catch()
+          this.$router.push('/products')
+
+        }
+        else {
+          this.axios.post('/api/product/update', this.product)
           this.$router.push({path: '/products'})
         }
       },
       onCancel() {
         this.$router.push({path: '/products'})
       },
-      onOptionCategory(category){
+      onOptionCategory(category) {
         console.log(category)
       }
     },
@@ -175,7 +179,7 @@
         this.categories = response.data;
       });
 
-      if(this.id !== 'new'){
+      if (this.id !== 'new') {
         this.product = this.$store.getters.getProduct(parseInt(this.id))
       }
       // this.categories = this.$store.state.category.categories
@@ -190,7 +194,7 @@
 </script>
 
 <style scoped>
-  div .light{
+  div .light {
     opacity: 0.5;
   }
 </style>
