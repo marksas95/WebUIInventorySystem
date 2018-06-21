@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      
+
       categoryHeaders: ["Name"]
     };
   },
@@ -39,14 +39,14 @@ export default {
   created() {
       if (this.$store.state.category.categories.length === 0){
         console.log('list')
-            this.$store.dispatch('initCategory'); 
+            this.$store.dispatch('initCategory');
       }else{
         console.log('oops')
       }
   },
   methods: {
 
-...mapActions 
+...mapActions
     (['initCategory',
       'DELETE_CATEGORY']),
 

@@ -10,6 +10,9 @@ const getters = {
     getActiveProducts: state => {
       return state.products.filter((val) => val.active);
     },
+  getInActiveProducts: state => {
+    return state.products.filter((val) => !val.active);
+  },
     getCategories: (state) => (productId) => {
       return state.products.find((e) => e.id === productId).category;
     },
@@ -49,11 +52,13 @@ const actions = {
     })
   },
   CREATE_PRODUCT: ({commit}, product) => {
-    return Vue.axios.post('/api/product/create', product).then((response) => {
+    return new Promise((resolve, reject) => {
+      return Vue.axios.post('/api/product/create', product).then((response) => {
         console.log(response.data)
         commit('addProduct', response.data)
-      return (response.data)
+        resolve(response.data)
       })
+    })
   },
   DELETE_PRODUCT: ({commit}, productId) => {
     return new Promise((resolve, reject) => {

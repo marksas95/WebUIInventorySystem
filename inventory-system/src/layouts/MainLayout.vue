@@ -2,8 +2,11 @@
   <div>
     <appNavigationBar></appNavigationBar>
     <div class="container">
-      <transition name="fade" >
-        <router-view></router-view>
+      <transition name="fade">
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+
       </transition>
     </div>
   </div>
@@ -12,6 +15,7 @@
 
 <script>
   import navigationBar from '../components/NavigationBar.vue'
+
   export default {
     data() {
       return {
@@ -25,16 +29,19 @@
 </script>
 
 <style scoped>
-  .face-enter{
+  .face-enter {
     opacity: 0;
   }
-.fade-enter-alive{
+
+  .fade-enter-alive {
     transition: opacity 1s;
-}
-  .fade-leave{
+  }
+
+  .fade-leave {
 
   }
-  .fade-leave-active{
+
+  .fade-leave-active {
     transition: opacity 1s;
     opacity: 0;
   }
