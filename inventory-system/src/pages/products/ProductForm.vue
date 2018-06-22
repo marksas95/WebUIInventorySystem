@@ -114,8 +114,8 @@
             </div>
             <div class="col-md-offset-3">
               <div class="row text-right">
-                <button class="btn btn-primary" @click="onSave">Save</button>
-                <button class="btn btn-primary" @click="onCancel">Cancel</button>
+                <button class="btn btn-primary" @click="onSave" type="button">Save</button>
+                <button class="btn btn-primary" @click="onCancel" type="button">Cancel</button>
               </div>
             </div>
           </div>
@@ -158,15 +158,17 @@
       onSave() {
         if (this.id === 'new') {
           this.CREATE_PRODUCT(this.product).then(() =>{
+            this.$router.push({name:'product'})
           }) //Fixme
-          this.$router.push({name:'product'})
+
         }
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
             //puga guba ini
             // Try ko fix - Mr. J
+            this.$router.push({name:'product'})
           })
-          this.$router.push({name:'product'})
+
         }
       },
       onCancel() {

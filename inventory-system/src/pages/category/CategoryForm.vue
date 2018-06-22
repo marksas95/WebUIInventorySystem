@@ -4,16 +4,16 @@
       <form>
         <div class="col-md-6 col-md-offset-3">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="categoryName">Name</label>
             <input
               type="text"
-              id="name"
+              id="categoryName"
               class="form-control"
-              v-model.lazy="category.name">
+              v-model="categoryForForm.name">
           </div>
           <div class="row text-right">
-            <button class="btn btn-primary" @click="onSave">Save</button>
-            <button class="btn btn-primary" @click="onCancel">Cancel</button>
+            <button class="btn btn-primary" type="button" @click="onSaveCategory">Save</button>
+            <button class="btn btn-primary" @click="onCancel" type="button">Cancel</button>
           </div>
         </div>
       </form>
@@ -35,19 +35,20 @@
     },
     data() {
       return {
-        category: {}
+        categoryForForm: {}
       }
     },
     created() {
-      this.category = this.$store.getters.getCategory(parseInt(this.id))
-
+      this.categoryForForm = this.$store.getters.getCategory(parseInt(this.id))
+      console.log(this.categoryForForm)
     },
     methods: {
-      onSave() {
+      onSaveCategory() {
+        console.log(this.categoryForForm)
         this.$router.push({path: '/categories'})
       },
       onCancel() {
-        this.$router.push({path: '/categories'})
+        // this.$router.push({path: '/categories'})
       }
     }
   }

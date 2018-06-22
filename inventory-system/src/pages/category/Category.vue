@@ -37,12 +37,13 @@ export default {
     }
   },
   created() {
-      if (this.$store.state.category.categories.length === 0){
-        console.log('list')
-            this.$store.dispatch('INIT_CATEGORY');
-      }else{
-        console.log('oops')
-      }
+    this.$store.dispatch('INIT_CATEGORY');
+      // if (this.$store.state.category.categories.length === 0){
+      //   console.log('list')
+      //       this.$store.dispatch('INIT_CATEGORY');
+      // }else{
+      //   console.log('oops')
+      // }
   },
   methods: {
 

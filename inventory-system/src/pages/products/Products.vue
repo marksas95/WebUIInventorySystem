@@ -4,7 +4,7 @@
       <ul class="class nav nav-pills">
         <!--<router-link to="/" tag="li" active-class="active" exact><a>List</a></router-link>-->
         <!--<router-link to="/create" tag="li" active-class="active" exact><a>Create</a></router-link>-->
-        <button class="btn btn-primary " @click="onNew">New</button>
+        <button class="btn btn-primary" @click="onNew">New</button>
         <div class="form-group col-md-2">
           <label for="status" class="text-center col-md-offset-4" color="white">Status</label>
           <select class="form-control"
@@ -150,15 +150,15 @@
     },
     created: function () {
 
-      if (this.$store.state.product.products.length === 0|this.$store.state.category.categories ===0) {
+      if (this.$store.state.product.products.length === 0||this.$store.state.category.categories ===0) {
         console.log('create')
         // this.INIT_CATEGORY
-        this.$store.dispatch('INIT_CATEGORY')
         this.$store.dispatch('INIT_PRODUCTS')
         // this.INIT_PRODUCTS
       } else {
         console.log('wala nag create')
       }
+      this.$store.dispatch('INIT_CATEGORY')
       this.categoriesToSelect = this.$store.state.category.categories;
       console.log(this.categoriesToSelect)
       console.log(this.productsToView)
@@ -172,4 +172,7 @@
 </script>
 
 <style scoped>
+  button{
+    margin-top: 25px;
+  }
 </style>
