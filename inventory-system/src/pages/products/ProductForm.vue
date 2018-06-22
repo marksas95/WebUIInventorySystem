@@ -164,7 +164,7 @@
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
             //puga guba ini
-            // Try ko fix - Mr. J
+            
 
           })
         }

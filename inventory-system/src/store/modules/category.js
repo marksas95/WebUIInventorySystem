@@ -19,6 +19,9 @@ const mutations = {
   setCategories: (state, categories) => {
     state.categories = categories;
   },
+  addCategory: (state, category) => {
+    state.categories.push(category)
+  }
 
 
   // removeCategory: (state, categoryId) =>{
@@ -55,6 +58,25 @@ const actions = {
         })
       })
     }
+  },
+  CREATE_CATEGORY: ({commit}, category )=>{
+    return new Promise((resolve, reject)=>{
+      Vue.axios.post('/api/category/create', category).then((response)=>{
+        Vue.axios.get('/api/category/list').then((response)=>{
+          console.log(response.data)
+          commit('addCategory',response.data)
+        })
+      })
+    })
+  },
+  UPDATE_CATEGORY: ({commit}, category)=>{
+    return new Promise((resolve, reject)=>{
+      Vue.axios.post('api/category/update', category).then((response)=> {
+        console.log(response.data)
+        this.initCategory
+        resolve(response.data)
+      })
+    })
   }
 }
 

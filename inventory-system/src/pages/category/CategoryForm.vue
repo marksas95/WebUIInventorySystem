@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <div class="row">
       <form>
@@ -9,7 +10,7 @@
               type="text"
               id="name"
               class="form-control"
-              v-model.lazy="category.name">
+              v-model.lazy="categoryList.name">
           </div>
           <div class="row text-right">
             <button class="btn btn-primary" @click="onSave">Save</button>
@@ -25,26 +26,40 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
   export default {
+    
     name: "CategoryForm",
     props: {
       id: {
         type: String,
-        default: () => ''
+        default:''
       }
     },
     data() {
       return {
-        category: {}
+        categoryList: {
+          name: ''
+        },
       }
     },
     created() {
-      this.category = this.$store.getters.getCategory(parseInt(this.id))
+      this.categoryList = this.$store.getters.getCategory(parseInt(this.id))
 
     },
     methods: {
+      ...mapActions([
+        'CREATE_CATEGORY', 'UPDATE_CATEGORY'
+      ]),
       onSave() {
+        if (this.id === 'new') {
+        this.CREATE_CATEGORY(this.categoryList)  
         this.$router.push({path: '/categories'})
+        }else{
+          this.UPDATE_CATEGORY(this.categoryList)
+          this.$router.push({path: '/categories'})
+        }
+        
       },
       onCancel() {
         this.$router.push({path: '/categories'})
