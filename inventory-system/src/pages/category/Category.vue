@@ -39,7 +39,7 @@ export default {
   created() {
       if (this.$store.state.category.categories.length === 0){
         console.log('list')
-            this.$store.dispatch('initCategory');
+            this.$store.dispatch('INIT_CATEGORY');
       }else{
         console.log('oops')
       }
@@ -47,7 +47,7 @@ export default {
   methods: {
 
 ...mapActions
-    (['initCategory',
+    (['INIT_CATEGORY',
       'DELETE_CATEGORY']),
 
     editCategory(categoryId) {

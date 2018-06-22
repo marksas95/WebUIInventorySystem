@@ -7,13 +7,13 @@ const state = {
 };
 
 const getters = {
-    getActiveProducts: state => {
+    GET_ACTIVE_PRODUCT: state => {
       return state.products.filter((val) => val.active);
     },
-  getInActiveProducts: state => {
+    GET_INACTIVE_PRODUCT: state => {
     return state.products.filter((val) => !val.active);
-  },
-    getCategories: (state) => (productId) => {
+    },
+    GET_CATEGORIES: (state) => (productId) => {
       return state.products.find((e) => e.id === productId).category;
     },
     GET_PRODUCT: (state) => (productId) => {
@@ -28,6 +28,9 @@ const mutations = {
   },
   setProducts: (state, products) => {
     state.products = products;
+  },
+  getProductsByCategory:(state,products,categoryId) => {
+    return products.filter((val) => val.category.id == categoryId);
   }
 };
 
@@ -69,6 +72,9 @@ const actions = {
         })
       })
     })
+  },
+  GET_PRODUCTS_BY_CATEGORY: ({commit},products,categoryId) => {
+    return commit('getProductsByCategory', products,categoryId)
   }
 };
 

@@ -129,7 +129,7 @@
 </template>
 
 <script>
-  import Header from '../../components/Header.vue'
+  import Header from './Header.vue'
   import {mapActions} from 'vuex'
 
   export default {
@@ -165,8 +165,8 @@
           this.UPDATE_PRODUCT(this.product).then(() =>{
             //puga guba ini
             // Try ko fix - Mr. J
-
           })
+          this.$router.push({name:'product'})
         }
       },
       onCancel() {
