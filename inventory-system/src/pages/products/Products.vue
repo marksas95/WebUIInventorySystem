@@ -150,7 +150,7 @@
     },
     created: function () {
 
-      if (this.$store.state.product.products.length === 0) {
+      if (this.$store.state.product.products.length === 0|this.$store.state.category.categories ===0) {
         console.log('create')
         // this.INIT_CATEGORY
         this.$store.dispatch('INIT_CATEGORY')
