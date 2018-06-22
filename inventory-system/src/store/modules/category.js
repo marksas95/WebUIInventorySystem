@@ -71,7 +71,9 @@ const actions = {
   },
   UPDATE_CATEGORY: ({commit}, category)=>{
     return new Promise((resolve, reject)=>{
+console.log(category)
       Vue.axios.post('api/category/update', category).then((response)=> {
+        
         console.log(response.data)
         this.initCategory
         resolve(response.data)

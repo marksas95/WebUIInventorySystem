@@ -10,10 +10,10 @@
               type="text"
               id="name"
               class="form-control"
-              v-model.lazy="categoryList.name">
+              v-model="categoryList.name">
           </div>
           <div class="row text-right">
-            <button class="btn btn-primary" @click="onSave">Save</button>
+            <button class="btn btn-primary" @click="onSaveCategory">Save</button>
             <button class="btn btn-primary" @click="onCancel">Cancel</button>
           </div>
         </div>
@@ -39,25 +39,28 @@ import { mapActions } from 'vuex';
     data() {
       return {
         categoryList: {
-          name: ''
         },
       }
     },
     created() {
+
       this.categoryList = this.$store.getters.getCategory(parseInt(this.id))
+      console.log(this.categoryList)
 
     },
     methods: {
       ...mapActions([
         'CREATE_CATEGORY', 'UPDATE_CATEGORY'
       ]),
-      onSave() {
+      onSaveCategory() {
         if (this.id === 'new') {
         this.CREATE_CATEGORY(this.categoryList)  
         this.$router.push({path: '/categories'})
         }else{
           this.UPDATE_CATEGORY(this.categoryList)
-          this.$router.push({path: '/categories'})
+          console.log('update')
+          console.log(this.categoryList)
+          // this.$router.push({path: '/categories'})
         }
         
       },
