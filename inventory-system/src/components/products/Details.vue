@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import Header from '../Header.vue'
+  import Header from '../../pages/products/Header.vue'
 
 
   export default {

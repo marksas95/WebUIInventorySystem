@@ -35,7 +35,7 @@ const mutations = {
 
 const actions = {
 
-  initCategory: ({commit}) => {
+  INIT_CATEGORY: ({commit}) => {
     return Vue.axios.get('/api/category/list').then((response) => {
       commit('setCategories', response.data);
       return (response.data)

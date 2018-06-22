@@ -129,7 +129,7 @@
 </template>
 
 <script>
-  import Header from '../../components/Header.vue'
+  import Header from './Header.vue'
   import {mapActions} from 'vuex'
 
   export default {
@@ -167,6 +167,7 @@
             
 
           })
+          this.$router.push({name:'product'})
         }
       },
       onCancel() {
