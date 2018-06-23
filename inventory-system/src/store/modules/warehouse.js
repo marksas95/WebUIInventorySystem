@@ -25,6 +25,17 @@ const actions = {
   },
   setWarehouseId: ({commit}, warehouseId) =>{
     commit('setWarehouseId', warehouseId);
+  },
+
+  DELETE_WAREHOUSE: ({commit}, warehouseId)=>{
+    if(confirm('Delete?')){
+      Vue.axios.delete('/api/warehouse/delete?id=' + warehouseId).then((response)=>{
+        Vue.axios.get(('/api/warehouse/list')).then((response)=>{
+          console.log(response.data)
+          
+        })
+      })
+    }
   }
 };
 

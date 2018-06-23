@@ -8,6 +8,7 @@ const state = {
 
 
 const getters = {
+	
   getCategory: (state) => (categoryId) => {
     return state.categories.find((e) => e.id === categoryId)
   }
@@ -18,6 +19,9 @@ const mutations = {
   setCategories: (state, categories) => {
     state.categories = categories;
   },
+  addCategory: (state, category) => {
+    state.categories.push(category)
+  }
 
 
   // removeCategory: (state, categoryId) =>{
@@ -63,7 +67,35 @@ const actions = {
         })
       })
     }
+  },
+  UPDATE_CATEGORY: ({commit}, category)=>{
+    return new Promise ((resolve, reject)=>{
+    console.log(category)
+    console.log('updateCategory')
+    let data = new FormData()
+        data.append('id', category.id)
+        data.append('name',category.name)
+      Vue.axios.post('/api/category/update', data).then((response)=> {
+        
+
+
+        console.log('response')
+        console.log(response.data)
+        resolve(response.data)
+      })
+    })
+  },
+  CREATE_CATEGORY: ({commit}, category )=>{
+    return new Promise((resolve, reject)=>{
+      Vue.axios.post('/api/category/create', category).then((response)=>{
+        Vue.axios.get('/api/category/list').then((response)=>{
+          console.log(response.data)
+          commit('addCategory',response.data)
+        })
+      })
+    })
   }
+  
 }
 
 

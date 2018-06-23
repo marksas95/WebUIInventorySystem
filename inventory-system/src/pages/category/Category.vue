@@ -1,5 +1,6 @@
 <template>
   <div>
+    <categoryHeader></categoryHeader>  
     <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
@@ -13,12 +14,14 @@
 
 import CategoryTable from "../../components/BaseTable.vue";
 import category from "../../store/modules/category";
+import CategoryHeader from "./CategoryHeader.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Category",
   components: {
     categoryTable: CategoryTable,
+    categoryHeader: CategoryHeader
   },
   data() {
     return {

@@ -160,6 +160,7 @@
           this.CREATE_PRODUCT(this.product).then(() =>{
             this.$router.push({name:'product'})
           })
+          this.$destroy();
         }
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
