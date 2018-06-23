@@ -10,10 +10,10 @@
               type="text"
               id="name"
               class="form-control"
-              v-model="categoryList.name">
+              v-model="category.name">
           </div>
           <div class="row text-right">
-            <button class="btn btn-primary" @click="onSaveCategory">Save</button>
+            <button type="button"  class="btn btn-primary" @click="onSaveCategory">Save</button>
             <button class="btn btn-primary" @click="onCancel">Cancel</button>
           </div>
         </div>
@@ -26,49 +26,46 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-  export default {
-    
-    name: "CategoryForm",
-    props: {
-      id: {
-        type: String,
-        default:''
+import { mapActions } from "vuex";
+export default {
+  name: "CategoryForm",
+  props: {
+    id: {
+      type: String,
+      default: ""
+    }
+  },
+  data() {
+    return {
+      ...mapActions(["CREATE_CATEGORY", "UPDATE_CATEGORY"]),
+      categoryList: {},
+      category: {
       }
-    },
-    data() {
-      return {
-        categoryList: {
-        },
-      }
-    },
-    created() {
+    };
+  },
+  created() {
+    this.category = this.$store.getters.getCategory(parseInt(this.id));
+    console.log(this.categoryList);
+  },
+  methods: {
+    onSaveCategory() {
+      console.log(this.category)
+      if (this.id === "new") {
+        this.CREATE_CATEGORY(this.category);
+        this.$router.push({ path: "/categories" });
+      } else {
+        console.log("update");
+        console.log(this.categoryList);
+        this.UPDATE_CATEGORY(this.category);
 
-      this.categoryList = this.$store.getters.getCategory(parseInt(this.id))
-      console.log(this.categoryList)
-
-    },
-    methods: {
-      ...mapActions([
-        'CREATE_CATEGORY', 'UPDATE_CATEGORY'
-      ]),
-      onSaveCategory() {
-        if (this.id === 'new') {
-        this.CREATE_CATEGORY(this.categoryList)  
-        this.$router.push({path: '/categories'})
-        }else{
-          this.UPDATE_CATEGORY(this.categoryList)
-          console.log('update')
-          console.log(this.categoryList)
-          // this.$router.push({path: '/categories'})
-        }
-        
-      },
-      onCancel() {
         this.$router.push({path: '/categories'})
       }
+    },
+    onCancel() {
+      this.$router.push({ path: "/categories" });
     }
   }
+};
 </script>
 
 

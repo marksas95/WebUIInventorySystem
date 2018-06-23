@@ -59,6 +59,23 @@ const actions = {
       })
     }
   },
+  UPDATE_CATEGORY: ({commit}, category)=>{
+    return new Promise ((resolve, reject)=>{
+    console.log(category)
+    console.log('updateCategory')
+    let data = new FormData()
+        data.append('id', category.id)
+        data.append('name',category.name)
+      Vue.axios.post('/api/category/update', data).then((response)=> {
+        
+
+
+        console.log('response')
+        console.log(response.data)
+        resolve(response.data)
+      })
+    })
+  },
   CREATE_CATEGORY: ({commit}, category )=>{
     return new Promise((resolve, reject)=>{
       Vue.axios.post('/api/category/create', category).then((response)=>{
@@ -68,18 +85,8 @@ const actions = {
         })
       })
     })
-  },
-  UPDATE_CATEGORY: ({commit}, category)=>{
-    return new Promise((resolve, reject)=>{
-console.log(category)
-      Vue.axios.post('api/category/update', category).then((response)=> {
-        
-        console.log(response.data)
-        this.initCategory
-        resolve(response.data)
-      })
-    })
   }
+  
 }
 
 
