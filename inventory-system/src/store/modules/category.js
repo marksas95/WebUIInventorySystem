@@ -37,6 +37,15 @@ const actions = {
       return (response.data)
     })
   },
+  INIT_CATEGORIES: ({commit}) => {
+    return new Promise((resolve, reject) => {
+       return Vue.axios.get('/api/category/list').then((response) => {
+        commit('setCategories', response.data);
+        resolve(response.data)
+      })
+
+    })
+  },
 
   setCategories: ({commit}, categories) => {
     commit('setCategories', categories);

@@ -78,17 +78,17 @@
             </div>
             <div class="row">
               <div class="form-group">
-                <label for="active">
+                <label for="active01">
                   <input
                     type="radio"
-                    id="active"
+                    id="active01"
                     value="true"
                     v-model="product.active"> Active
                 </label>
-                <label for="notActive">
+                <label for="notActive01">
                   <input
                     type="radio"
-                    id="notActive"
+                    id="notActive01"
                     value="false"
                     v-model="product.active"> Not Active
                 </label>
@@ -96,14 +96,14 @@
             </div>
             <div class="row">
               <div class="form-group">
-                <label for="active">
+                <label for="vatable">
                   <input
                     type="radio"
                     id="vatable"
                     value="true"
                     v-model="product.vatable"> Vatable
                 </label>
-                <label for="notActive">
+                <label for="notVatable">
                   <input
                     type="radio"
                     id="notVatable"
@@ -159,30 +159,27 @@
         if (this.id === 'new') {
           this.CREATE_PRODUCT(this.product).then(() =>{
             this.$router.push({name:'product'})
-          }) //Fixme
-
+          })
         }
         else {
           this.UPDATE_PRODUCT(this.product).then(() =>{
-            //puga guba ini
-            // Try ko fix - Mr. J
             this.$router.push({name:'product'})
           })
-
+          this.$destroy();
         }
       },
       onCancel() {
         this.$router.push({name:'product'})
+        this.$destroy();
       }
     },
     components: {
       appHeader: Header
     },
     created() {
-      this.axios.get("/api/category/list").then(response => {
-        this.categories = response.data;
-      });
-
+      this.$store.dispatch('INIT_CATEGORIES').then((response) => {
+        this.categories = this.$store.state.category.categories;
+      })
       if (this.id !== 'new') {
         this.product = this.$store.getters.GET_PRODUCT(parseInt(this.id))
       }
