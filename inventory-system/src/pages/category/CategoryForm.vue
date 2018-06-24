@@ -10,7 +10,7 @@
               type="text"
               id="categoryName"
               class="form-control"
-              v-model="categoryForForm.name">
+              v-model="category.name">
           </div>
           <div class="row text-right">
             <button class="btn btn-primary" type="button" @click="onSaveCategory">Save</button>
@@ -41,17 +41,21 @@ export default {
       ...mapActions(["CREATE_CATEGORY", "UPDATE_CATEGORY"]),
       categoryList: {},
       category: {
+        name:''
       }
     };
   },
   created() {
-    this.category = this.$store.getters.getCategory(parseInt(this.id));
+    if (this.id !== 'new') {
+      this.category = this.$store.getters.getCategory(parseInt(this.id));
+    }
     console.log(this.categoryList);
   },
   methods: {
     onSaveCategory() {
       console.log(this.category)
       if (this.id === "new") {
+        debugger
         this.CREATE_CATEGORY(this.category);
         this.$router.push({ path: "/categories" });
       } else {
@@ -60,9 +64,11 @@ export default {
         this.UPDATE_CATEGORY(this.category);
         this.$router.push({path: '/categories'})
       }
+      this.$destroy()
     },
     onCancel() {
       this.$router.push({ path: "/categories" });
+      this.$destroy()
     }
   }
 };

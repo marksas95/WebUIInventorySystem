@@ -1,5 +1,6 @@
 <template>
   <div>
+    <appHeader></appHeader>
     <warehouseTable
       v-show="!individualDetails"
       :table-headers="tableHeaders"
@@ -22,12 +23,13 @@
 <script>
   import WarehouseTable from '../../components/BaseTable'
   import WarehouseDetails from '../../components/BaseDetails'
-
+  import Header from './Header'
+  import {mapGetters} from 'vuex'
   export default {
     name: "Warehouse",
     data() {
       return {
-        tableHeaders: ['Name', 'Location', 'Decription'],
+        tableHeaders: ['Name', 'Location', 'Decription','Status'],
         individualDetails:false,
         detailsTitle:'Warehouse Details',
         warehouseDetailss:{}
@@ -35,22 +37,22 @@
     },
     components: {
       warehouseTable: WarehouseTable,
-      warehouseDetails: WarehouseDetails
+      warehouseDetails: WarehouseDetails,
+      appHeader: Header
     },
     computed: {
+      ...mapGetters([
+        'GET_FILTERED_WAREHOUSES_TO_VIEW'
+      ]),
       warehouses() {
-        return this.$store.state.warehouse.warehouses.map(o => {
-            return {
-              id: o.id,
-              data: [o.name, o.address, o.description]
-            }
-          }
-        )
+        debugger
+        return this.$store.getters.GET_FILTERED_WAREHOUSES_TO_VIEW
       }
     },
     created() {
       this.axios.get('/api/warehouse/list').then(response => {
         this.$store.dispatch('setWarehouses', response.data)
+        console.log(response.data)
       })
     },
     methods: {

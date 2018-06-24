@@ -8,7 +8,7 @@ const state = {
 
 
 const getters = {
-	
+
   getCategory: (state) => (categoryId) => {
     return state.categories.find((e) => e.id === categoryId)
   }
@@ -76,7 +76,7 @@ const actions = {
         data.append('id', category.id)
         data.append('name',category.name)
       Vue.axios.post('/api/category/update', data).then((response)=> {
-        
+
 
 
         console.log('response')
@@ -87,15 +87,16 @@ const actions = {
   },
   CREATE_CATEGORY: ({commit}, category )=>{
     return new Promise((resolve, reject)=>{
-      Vue.axios.post('/api/category/create', category).then((response)=>{
+      Vue.axios.post('/api/category/create?name='+category.name).then((response)=>{
         Vue.axios.get('/api/category/list').then((response)=>{
           console.log(response.data)
+          debugger
           commit('addCategory',response.data)
         })
       })
     })
   }
-  
+
 }
 
 

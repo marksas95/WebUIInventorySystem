@@ -1,11 +1,35 @@
 const state = {
   warehouses: [],
-  warehouseId: ''
+  warehouseId: '',
+  filteredWarehouses:[]
 };
 
 const getters = {
       getWarehouse: (state)=> (warehouseId)=>{
         return state.warehouses.find(e => e.id === warehouseId);
+      },
+  GET_FILTERED_WAREHOUSES_TO_VIEW: (state) => {
+    return state.filteredWarehouses.map(o => {
+        return {
+          id: o.id,
+          data: [o.name, o.address, o.description, o.active==true? 'Active':'Not Active']
+        }
+      }
+    )
+  },
+      FILTER_WAREHOUSES: (state) => (status) =>{
+        switch (status) {
+          case 'Active Only':
+            debugger
+            state.filteredWarehouses = state.warehouses.filter((val) => val.active)
+            break;
+          case 'Inactive Only':
+            state.filteredWarehouses = state.warehouses.filter((val) => !val.active);
+            break;
+          default:
+            state.filteredWarehouses = state.warehouses
+        }
+
       }
   }
 ;
@@ -32,7 +56,7 @@ const actions = {
       Vue.axios.delete('/api/warehouse/delete?id=' + warehouseId).then((response)=>{
         Vue.axios.get(('/api/warehouse/list')).then((response)=>{
           console.log(response.data)
-          
+
         })
       })
     }

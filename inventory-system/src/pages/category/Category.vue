@@ -1,6 +1,6 @@
 <template>
   <div>
-    <categoryHeader></categoryHeader>  
+    <categoryHeader></categoryHeader>
     <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
@@ -41,12 +41,6 @@ export default {
   },
   created() {
     this.$store.dispatch('INIT_CATEGORY');
-      // if (this.$store.state.category.categories.length === 0){
-      //   console.log('list')
-      //       this.$store.dispatch('INIT_CATEGORY');
-      // }else{
-      //   console.log('oops')
-      // }
   },
   methods: {
 
