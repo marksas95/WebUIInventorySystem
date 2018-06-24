@@ -55,7 +55,6 @@ export default {
     onSaveCategory() {
       console.log(this.category)
       if (this.id === "new") {
-        debugger
         this.CREATE_CATEGORY(this.category);
         this.$router.push({ path: "/categories" });
       } else {
