@@ -28,6 +28,7 @@
                 'goodQuantityProducts':o.goodQuantityProducts.map(o => {
                   return {
                     'itemCode':o.product.itemCode,
+                    'minimumStocks':o.product.minimumStocks,
                     'quantity':o.quantity,
                     'status':o.product.active === true ? 'Active':'Not Active'
                   }

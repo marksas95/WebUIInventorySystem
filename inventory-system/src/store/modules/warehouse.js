@@ -55,6 +55,13 @@ const mutations = {
 };
 
 const actions = {
+  FIND_BY_WAREHOUSE_ID:({commit}, warehouseId) =>{
+    return new Promise((resolve, reject) => {
+      Vue.axios.get('/api/warehouse/findById?id=' + warehouseId).then(o => {
+        resolve(o)
+      })
+    })
+  },
   setWarehouses: ({commit}, warehouses) => {
     commit('SET_WAREHOUSES', warehouses);
   },

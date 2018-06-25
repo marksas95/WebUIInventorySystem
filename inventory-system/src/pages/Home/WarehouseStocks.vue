@@ -6,11 +6,24 @@
           Warehouse: {{warehouseData.name}}
           <small class="class pull-right">Status: {{warehouseData.active}}</small>
         </h3>
+        <h3 class="panel-title" @click="">
+          Good Products
+        </h3>
         <div>
+          <button type="button" @click="viewGoodStocks">View Good Stocks</button>
           <button type="button" @click="stockIn">Stock In</button>
             <button type="button" @click="stockOut">Stock Out</button>
           <button>Transfer Stocks</button>
-          <button>View Product Stocks</button>
+        </div>
+        <h3 class="panel-title" @click="">
+          Damaged Products
+        </h3>
+        <div>
+          <button>View Damaged Stocks</button>
+          <button type="button" @click="stockIn">Stock In</button>
+          <button type="button" @click="stockOut">Stock Out</button>
+          <button>Replace Product</button>
+
         </div>
       </div>
       <div class="class panel-body">
@@ -23,7 +36,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="rows in warehouseData.goodQuantityProducts">
+            <tr v-for="rows in minimumStocks">
               <th v-for="column in rows"><small>{{column}}</small></th>
             </tr>
           </tbody>
@@ -46,7 +59,7 @@
         name: "WarehouseStocks",
       data(){
         return{
-          titleHeaders:['Item Code','Quantity','Status']
+          titleHeaders:['Item Code','Minimum Stocks','Quantity','Status']
         }
       },
       props:{
@@ -55,8 +68,14 @@
             default:() => ({})
           }
       },
+      computed:{
+          minimumStocks(){
+           return this.warehouseData.goodQuantityProducts.filter((p) => p.quantity <= p.minimumStocks)
+          }
+      },
       created(){
           console.log(this.warehouseData)
+        console.log(this.minimumStocks)
       },
       methods:{
           stockIn(){
@@ -74,7 +93,10 @@
             } else {
               alert('Warehouse is not active!')
             }
-          }
+          },
+        viewGoodStocks(){
+          this.$router.push('/good-products/'+this.warehouseData.id)
+        }
       }
     }
 </script>
