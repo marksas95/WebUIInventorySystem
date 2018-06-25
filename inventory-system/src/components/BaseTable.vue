@@ -15,9 +15,13 @@
           <th><small>{{value}}</small></th>
         </template>
         <th class="col-md-3 text-right">
+          <button class="btn btn-primary"
+                  @click="buttonFunction(x.id, button); onClick(button);"
+                  v-for="button in kindsOfButton"
+                  type="button">{{button}}</button>
           <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
           <button @click="onDelete(x.id)" class="btn btn-danger">Delete</button>
-            <button @click="onDetails(x.id); onClick();" class="btn btn-default">Details</button>
+            <button @click="onDetails(x.id)" class="btn btn-default">Details</button>
         </th>
       </tr>
       </tbody>
@@ -60,13 +64,22 @@
         type: Function,
         default: () => {
         }
+      },
+      kindsOfButton:{
+        type:Array,
+        default: []
+      },
+      buttonFunction:{
+        type:Function,
+        default: () => {}
       }
     },
     methods: {
       click(data){
         console.log(data)
       }
-    }
+    },
+
   }
 </script>
 

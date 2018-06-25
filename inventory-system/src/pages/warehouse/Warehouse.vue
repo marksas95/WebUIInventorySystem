@@ -5,16 +5,15 @@
       v-show="!individualDetails"
       :table-headers="tableHeaders"
       :table-data="warehouses"
-      :on-edit="editWarehouse"
-      :on-delete="deleteWarehouse"
-      :on-details="getWarehouse"
       :on-click="onClick"
+      :button-function="buttonFunction"
+      :kinds-of-button="kindsOfButton"
     />
 
     <warehouse-details
       v-show="individualDetails"
       :details-title="detailsTitle"
-      :objectDetails="warehouseDetailss"
+      :objectDetails="warehouseDetails"
       :on-click="onClick"
     />
   </div>
@@ -25,14 +24,16 @@
   import WarehouseDetails from '../../components/BaseDetails'
   import Header from './Header'
   import {mapGetters} from 'vuex'
+
   export default {
     name: "Warehouse",
     data() {
       return {
-        tableHeaders: ['Name', 'Location', 'Decription','Status'],
-        individualDetails:false,
-        detailsTitle:'Warehouse Details',
-        warehouseDetailss:{}
+        tableHeaders: ['Name', 'Location', 'Decription', 'Status'],
+        individualDetails: false,
+        detailsTitle: 'Warehouse Details',
+        warehouseDetails: {},
+        kindsOfButton: ['Change Status', 'Details', 'Edit']
       }
     },
     components: {
@@ -45,7 +46,6 @@
         'GET_FILTERED_WAREHOUSES_TO_VIEW'
       ]),
       warehouses() {
-        debugger
         return this.$store.getters.GET_FILTERED_WAREHOUSES_TO_VIEW
       }
     },
@@ -56,32 +56,29 @@
       })
     },
     methods: {
-      onClick(){
-        this.individualDetails = !this.individualDetails
+      onClick(button) {
+        if (button === 'Details') {
+          this.individualDetails = !this.individualDetails
+        }
       },
+      buttonFunction(warehouseId, button) {
+        switch (button) {
+          case 'Edit':
+            console.log('edit')
+            this.$router.push({path: `/warehouses/${warehouseId}`})
+            this.$destroy
+            break
+          case 'Details':
+            console.log('details')
+            this.warehouseDetails = this.$store.getters.GET_WAREHOUSE(warehouseId)
+            console.log(this.warehouseDetails)
+            break
+          case 'Change Status':
+            this.$store.dispatch('SET_STATUS_OF_WAREHOUSE',warehouseId)
+            console.log('change status')
+            break
 
-      editWarehouse(warehouseId) {
-        console.log('edit')
-        console.log(warehouseId)
-        this.$router.push({path: `/warehouses/${warehouseId}`})
-      },
-      getWarehouse(warehouseId) {
-        console.log(warehouseId)
-        this.axios.get('/api/warehouse/findById?id=' + warehouseId).then((response) => {
-          console.log(response.data)
-          let p = response.data
-
-          console.log(p)
-          this.warehouseDetailss = {
-            'Name' : p.name,
-            'Location' : p.address,
-            'Description' : p.description
-          }
-        })
-      },
-      deleteWarehouse(warehouseId) {
-        console.log('delete')
-        console.log(warehouseId)
+        }
       }
     }
   }

@@ -56,7 +56,6 @@ const actions = {
   },
 
   DELETE_CATEGORY: ({commit}, categoryId) => {
-    if (confirm('Delete?')) {
       return new Promise((resolve, reject) => {
         Vue.axios.delete('/api/category/delete?id=' + categoryId).then((response) => {
           Vue.axios.get('/api/category/list').then((response) => {
@@ -66,7 +65,6 @@ const actions = {
           })
         })
       })
-    }
   },
   UPDATE_CATEGORY: ({commit}, category)=>{
     return new Promise ((resolve, reject)=>{
@@ -90,7 +88,6 @@ const actions = {
       Vue.axios.post('/api/category/create?name='+category.name).then((response)=>{
         Vue.axios.get('/api/category/list').then((response)=>{
           console.log(response.data)
-          debugger
           commit('addCategory',response.data)
         })
       })

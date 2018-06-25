@@ -1,6 +1,6 @@
 <template>
 	<div>
-		
+
 		<div class="container">
 			<form>
 
@@ -57,7 +57,7 @@ export default {
 
   },
   created() {
-    this.warehouse = this.$store.getters.getWarehouse(parseInt(this.id));
+    this.warehouse = this.$store.getters.GET_WAREHOUSE(parseInt(this.id));
     console.log(this.warehouse);
   },
   props: {

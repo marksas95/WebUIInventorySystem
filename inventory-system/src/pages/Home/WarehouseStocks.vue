@@ -1,16 +1,23 @@
 <template>
-  <div class="class col-md-4">
+  <div class="class col-md-6">
     <div class="class panel panel-success">
       <div class="class panel-heading">
-        <h3 class="panel-title">
+        <h3 class="panel-title" @click="">
           Warehouse: {{warehouseData.name}}
           <small class="class pull-right">Status: {{warehouseData.active}}</small>
         </h3>
+        <div>
+          <button type="button" @click="stockIn">Stock In</button>
+            <button type="button" @click="stockOut">Stock Out</button>
+          <button>Transfer Stocks</button>
+          <button>View Product Stocks</button>
+        </div>
       </div>
       <div class="class panel-body">
         <div   class="overflow">
           <table class="table table-hover">
           <thead>
+          <h4>Minimum Stocks:</h4>
             <tr>
               <th v-for="title in titleHeaders"><strong>{{title}}</strong></th>
             </tr>
@@ -50,14 +57,32 @@
       },
       created(){
           console.log(this.warehouseData)
+      },
+      methods:{
+          stockIn(){
+            if(this.warehouseData.active === 'Active'){
+              this.$router.push('/stockIn-form/'+this.warehouseData.id)
+              this.$destroy()
+            } else {
+              alert('Warehouse is not active!')
+            }
+          },
+          stockOut(){
+            if(this.warehouseData.active === 'Active'){
+              this.$router.push('/stockOut-form/'+this.warehouseData.id)
+              this.$destroy()
+            } else {
+              alert('Warehouse is not active!')
+            }
+          }
       }
     }
 </script>
 
 <style scoped>
-  div .overflow {
-    overflow: auto;
-    width: unset;
-    height: 300px;
-  }
+  /*div .overflow {*/
+    /*overflow: auto;*/
+    /*width: unset;*/
+    /*height: 300px;*/
+  /*}*/
 </style>

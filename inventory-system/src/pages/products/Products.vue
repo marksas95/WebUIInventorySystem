@@ -5,10 +5,9 @@
       <productTable v-show="!individualDetails"
                     :table-headers="tableHeaders"
                     :table-data="products"
-                    :on-edit="editProduct"
-                    :on-delete="deleteProduct"
-                    :on-details="getProduct"
-                    :on-click="onClick"/>
+                    :on-click="onClick"
+                    :kinds-of-button="kindsOfButton"
+                    :button-function="buttonFunction"/>
 
       <product-details v-show="individualDetails"
                        :details-title="detailsTitle"
@@ -36,7 +35,8 @@
         selectViewProduct: 'All',
         categoriesToSelect: [],
         categoryId: 0,
-        searchBy: ['All', 'Item Code', 'Description', 'Unit of measurements']
+        searchBy: ['All', 'Item Code', 'Description', 'Unit of measurements'],
+        kindsOfButton:['Change Status','Details','Edit']
       }
     },
     computed: {
@@ -57,23 +57,24 @@
         DELETE_PRODUCT: 'DELETE_PRODUCT',
         INIT_CATEGORY: 'INIT_CATEGORY'
       }),
-      onClick() {
+      onClick(button) {
+        if(button === 'Details')
         this.individualDetails = !this.individualDetails;
         console.log(this.individualDetails)
         console.log(this.productsToView)
       },
-      editProduct(productID) {
-        console.log('edit')
-        console.log(productID)
-        this.$router.push({path: `/products/${productID}`})
-        this.$destroy()
-      },
-      getProduct(productId) {
-        this.productDetails = this.GET_PRODUCT_DETAILS(productId)
-      },
-      deleteProduct(productId) {
-        if (confirm('Are you sure you want to delete?')) {
-          this.DELETE_PRODUCT(productId).then(o => console.log(o))
+      buttonFunction(productId,button){
+        switch (button){
+          case 'Details':
+            this.productDetails = this.GET_PRODUCT_DETAILS(productId)
+                break
+          case 'Edit':
+            debugger
+            this.$router.push({path: `/products/${productId}`})
+            this.$destroy()
+                break
+          case 'Change Status':
+              this.$store.dispatch('UPDATE_PRODUCT_STATUS',productId)
         }
       }
     },
