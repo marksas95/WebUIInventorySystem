@@ -5,8 +5,7 @@
                     :table-headers="tableHeaders"
                     :table-data="reconciledProducts"
                     :on-click="onClick"
-                    :kinds-of-button="kindsOfButton"
-                    :button-function="buttonFunction"/>
+                    :kinds-of-button="kindsOfButton"/>
 
     </div>
   </div>
@@ -29,7 +28,7 @@
         categoriesToSelect: [],
         categoryId: 0,
         searchBy: ['All', 'Item Code', 'Description', 'Unit of measurements'],
-        kindsOfButton:['Change Status','Details','Edit']
+        kindsOfButton:[]
       }
     },
     computed: {
@@ -40,7 +39,8 @@
         'GET_PRODUCT_DETAILS'
       ]),
       reconciledProducts() {
-        return this.$store.state.reconciledProduct.reconciledProducts
+        return this.$store.getters.GET_RECONCILED_PRODUCTS
+
       }
 
     },

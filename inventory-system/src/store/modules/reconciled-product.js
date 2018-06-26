@@ -25,11 +25,18 @@ const  actions = {
 const getters ={
   GET_RECONCILED_PRODUCTS: state => {
     return state.reconciledProducts.map(p =>{
+      var dt = new Date(p.createdDate);
+      var date = dt.getMonth()+'/'+dt.getDate()+'/'+dt.getFullYear()
+      console.log(date)
       return {
         id: p.id,
         data: [
-
-        ]
+            date,
+            p.goodQuantityProduct.product.itemCode,
+            p.warehouse.name,
+            p.remarks,
+            p.physicalCount,
+            p.systemCount]
       }
     })
   }

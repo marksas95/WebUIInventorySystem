@@ -5,7 +5,7 @@
     <goodProductTable
       :table-headers="tableHeaders"
       :table-data="goodProducts"
-
+      :kindsOfButton="kindsOfButton"
     />
   </div>
 
@@ -19,7 +19,8 @@
     data() {
       return {
         goodProducts: [],
-        tableHeaders: ['Item Code', 'Minimum Stocks', 'Quantity', 'Status']
+        tableHeaders: ['Item Code', 'Minimum Stocks', 'Quantity', 'Status'],
+        kindsOfButton:[]
       }
     },
     components: {
