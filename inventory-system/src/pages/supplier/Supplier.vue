@@ -1,14 +1,19 @@
 <template>
+<div>
+<supplierHeader/>
     <supplierTable
     :table-headers="tableHeaders"
     :table-data="suppliers"
     :onEdit="editSupplier"
     :onDelete="deleteSupplier"
     />
+</div>
+      
 </template>
 
 
 <script>
+import SupplierHeader from "./SupplierHeader.vue";
 import	SupplierTable from "../../components/BaseTable.vue";
 import supplier from "../../store/modules/supplier";
 import { mapActions } from 'vuex';
@@ -40,7 +45,9 @@ export default {
     }
 	},
 	components:{
-		supplierTable: SupplierTable
+    supplierTable: SupplierTable,
+    supplierHeader: SupplierHeader
+    
 	},
   created() {
 	  this.axios.get('/api/supplier/list').then(response => {
