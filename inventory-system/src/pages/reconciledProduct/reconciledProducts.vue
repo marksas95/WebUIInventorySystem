@@ -3,21 +3,16 @@
     <div>
       <productTable v-show="!individualDetails"
                     :table-headers="tableHeaders"
-                    :table-data="products"
+                    :table-data="reconciledProducts"
                     :on-click="onClick"
                     :kinds-of-button="kindsOfButton"
                     :button-function="buttonFunction"/>
 
-      <product-details v-show="individualDetails"
-                       :details-title="detailsTitle"
-                       :objectDetails="productDetails"
-                       :on-click="onClick"/>
     </div>
   </div>
 </template>
 
 <script>
-  import Header from './Header.vue'
   import ProductTable from '../../components/BaseTable.vue'
   import ProductDetails from '../../components/BaseDetails'
   import {mapActions, mapGetters} from 'vuex'
@@ -44,14 +39,13 @@
         'GET_INACTIVE_PRODUCT',
         'GET_PRODUCT_DETAILS'
       ]),
-      products() {
-        return this.$store.getters.GET_FILTERED_PRODUCTS_TO_VIEW
+      reconciledProducts() {
+        return this.$store.state.reconciledProduct.reconciledProducts
       }
 
     },
     methods: {
       ...mapActions({
-        INIT_PRODUCTS: 'INIT_PRODUCTS',
         DELETE_PRODUCT: 'DELETE_PRODUCT',
         INIT_CATEGORY: 'INIT_CATEGORY'
       }),
@@ -77,16 +71,10 @@
       }
     },
     created: function () {
-      if (this.$store.state.product.products.length === 0 || this.$store.state.category.categories === 0) {
-        // this.INIT_CATEGORY
-        this.$store.dispatch('INIT_PRODUCTS')
-      }
-      this.$store.dispatch('INIT_CATEGORY').then(() => {
-        this.categoriesToSelect = this.$store.state.category.categories;
-      })
+        this.$store.dispatch('INIT_RECONCILED_PRODUCTS')
     },
     components: {
-      appHeader: Header,
+
       productTable: ProductTable,
       productDetails: ProductDetails
     }

@@ -80,10 +80,12 @@
       if (this.$store.state.product.products.length === 0 || this.$store.state.category.categories === 0) {
         // this.INIT_CATEGORY
         this.$store.dispatch('INIT_PRODUCTS')
+        this.$store.dispatch('INIT_WAREHOUSES')
       }
       this.$store.dispatch('INIT_CATEGORY').then(() => {
         this.categoriesToSelect = this.$store.state.category.categories;
       })
+
     },
     components: {
       appHeader: Header,

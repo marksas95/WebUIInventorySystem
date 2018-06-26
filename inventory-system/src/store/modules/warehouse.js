@@ -7,13 +7,6 @@ const state = {
 };
 
 const getters = {
-    // GET_TOTAL_QUANTITY_OF_PRODUCT: (state) => (productId) =>{
-    //   var totalQuantity = 0
-    //   state.warehouses.forEach(o => o.goodQuantityProducts
-    //                                 .find(x => x.product.id == productId)
-    //                                 .then(k => totalQuantity += k.quantity))
-    //   return totalQuantity
-    // },
     GET_ACTIVE_WAREHOUSE: (state) => {
       return state.warehouses.filter((val) => val.active)
     },

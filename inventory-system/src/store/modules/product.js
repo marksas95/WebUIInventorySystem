@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import Warehouse from './warehouse'
 const state = {
   products: [],
   productId: '',
@@ -46,13 +46,15 @@ const getters = {
     GET_PRODUCT: (state) => (productId) => {
       return state.products.find((e) => e.id === productId)
     },
-    GET_PRODUCT_DETAILS: (rootState) => (productId) => {
+    GET_PRODUCT_DETAILS: (state) => (productId) => {
       let p = state.products.find((e) => e.id === productId)
-      // var totalQuantity = 0
-      // rootState.warehouses.forEach(o => o.goodQuantityProducts
-      //   .find(x => x.product.id == productId)
-      //   .then(k => totalQuantity += k.quantity))
-
+      var totalQuantity = 0
+      Warehouse.state.warehouses.forEach(o =>{
+        let i = o.goodQuantityProducts.find((x) => x.product.id === productId)
+        if(i != null){
+          totalQuantity += i.quantity
+        }
+    })
       return {
         'Category': p.category == null ? '' : p.category.name,
         'Item Code': p.itemCode,
@@ -61,7 +63,8 @@ const getters = {
         'Serial Number': p.serialNumber,
         'MinimumStocks': p.minimumStocks,
         'Vatable': p.vatable === true ? 'Vatable' : 'Not Vatable',
-        'Remarks': p.remarks
+        'Remarks': p.remarks,
+        'Total Stocks': totalQuantity
       }
     }
   }
