@@ -97,6 +97,19 @@ const actions = {
 
     })
   },
+  UPDATE_PRODUCT_STATUS: ({commit}, productId) => {
+    return new Promise((resolve, reject) => {
+      let product = state.products.find((e) => e.id === productId)
+      product.active = !product.active
+      Vue.axios.post('/api/product/update', product).then((response) => {
+        Vue.axios.get('/api/product/list').then((response) => {
+          commit('setProducts', response.data)
+          resolve(response.data)
+        })
+      })
+
+    })
+  },
   CREATE_PRODUCT: ({commit}, product) => {
     return new Promise((resolve, reject) => {
       return Vue.axios.post('/api/product/create', product).then((response) => {

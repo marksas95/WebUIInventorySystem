@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import warehouseStocks from '../../components/WarehouseStocks'
+  import warehouseStocks from './WarehouseStocks'
     export default {
         name: "Home",
       data(){
@@ -22,11 +22,13 @@
         warehousesData() {
           return this.$store.state.warehouse.warehouses.map(o => {
               return {
+                'id':o.id,
                 'name':o.name,
                 'active':o.active === true ? 'Active':'Not Active',
                 'goodQuantityProducts':o.goodQuantityProducts.map(o => {
                   return {
                     'itemCode':o.product.itemCode,
+                    'minimumStocks':o.product.minimumStocks,
                     'quantity':o.quantity,
                     'status':o.product.active === true ? 'Active':'Not Active'
                   }

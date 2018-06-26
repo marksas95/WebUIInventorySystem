@@ -7,7 +7,7 @@
         </div>
         <div class="panel-body">
           <p v-for="(value, key) in objectDetails">{{key}}: {{value}}</p>
-          <button @click="onClick()">Back</button>
+          <button @click="onClick('Details')">Back</button>
         </div>
       </div>
     </div>

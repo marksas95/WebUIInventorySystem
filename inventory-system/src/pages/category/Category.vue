@@ -5,7 +5,9 @@
   :table-headers = "categoryHeaders"
   :table-data = "categories"
   :on-edit = "editCategory"
-  :on-delete = "deleteCategory"/>
+  :on-delete = "deleteCategory"
+  :kinds-of-button="kindsOfButton"
+  :button-function="buttonFunction"/>
   </div>
 
 </template>
@@ -25,8 +27,8 @@ export default {
   },
   data() {
     return {
-
-      categoryHeaders: ["Name"]
+      categoryHeaders: ["Name"],
+      kindsOfButton: ['Edit','Delete']
     };
   },
   computed: {
@@ -47,7 +49,18 @@ export default {
 ...mapActions
     (['INIT_CATEGORY',
       'DELETE_CATEGORY']),
-
+    buttonFunction(categoryId,button){
+      switch (button){
+        case 'Edit':
+          this.$router.push({path:`/categories/${categoryId}`})
+          this.$destroy
+          break
+        case 'delete':
+          if (confirm('Are you sure you want to delete category?')) {
+          this.DELETE_CATEGORY(categoryId)
+          }
+      }
+    },
     editCategory(categoryId) {
       console.log('edit')
       this.$router.push({path:`/categories/${categoryId}`})

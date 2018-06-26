@@ -5,6 +5,7 @@ import product from './modules/product.js';
 import warehouse from './modules/warehouse.js';
 import supplier from './modules/supplier.js';
 import category from './modules/category.js';
+import stock from './modules/stock'
 
 Vue.use(Vuex);
 
@@ -19,6 +20,7 @@ export const store = new Vuex.Store({
     product,
     warehouse,
     supplier,
-    category
+    category,
+    stock
   }
 });

@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const state = {
   warehouses: [],
   warehouseId: '',
@@ -5,8 +7,17 @@ const state = {
 };
 
 const getters = {
-      getWarehouse: (state)=> (warehouseId)=>{
-        return state.warehouses.find(e => e.id === warehouseId);
+      GET_WAREHOUSE: (state)=> (warehouseId)=>{
+        console.log('wweewe')
+        console.log(warehouseId)
+        let p = state.warehouses.find(e => e.id === warehouseId)
+          return {
+            'Name' : p.name,
+            'Location' : p.address,
+            'Description' : p.description
+          }
+
+
       },
   GET_FILTERED_WAREHOUSES_TO_VIEW: (state) => {
     return state.filteredWarehouses.map(o => {
@@ -44,13 +55,28 @@ const mutations = {
 };
 
 const actions = {
+  FIND_BY_WAREHOUSE_ID:({commit}, warehouseId) =>{
+    return new Promise((resolve, reject) => {
+      Vue.axios.get('/api/warehouse/findById?id=' + warehouseId).then(o => {
+        resolve(o)
+      })
+    })
+  },
   setWarehouses: ({commit}, warehouses) => {
     commit('SET_WAREHOUSES', warehouses);
   },
   setWarehouseId: ({commit}, warehouseId) =>{
     commit('setWarehouseId', warehouseId);
   },
-
+  SET_STATUS_OF_WAREHOUSE: ({commit}, warehouseId) =>{
+    let p = state.warehouses.find(e => e.id === warehouseId)
+    p.active = !p.active
+    Vue.axios.post('/api/warehouse/update',p).then((response) => {
+      Vue.axios.get(('/api/warehouse/list')).then((response)=>{
+        commit('SET_WAREHOUSES', response.data);
+      })
+    })
+  },
   DELETE_WAREHOUSE: ({commit}, warehouseId)=>{
     if(confirm('Delete?')){
       Vue.axios.delete('/api/warehouse/delete?id=' + warehouseId).then((response)=>{
