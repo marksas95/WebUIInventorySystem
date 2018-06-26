@@ -14,6 +14,7 @@
           <button type="button" @click="stockIn">Stock In</button>
             <button type="button" @click="stockOut">Stock Out</button>
           <button type="button" @click="transferStocks">Transfer Stocks</button>
+          <button type="button" >Reconcile Product</button>
         </div>
         <h3 class="panel-title" @click="">
           Damaged Products

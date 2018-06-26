@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Warehouse from './warehouse'
+
 const state = {
   products: [],
   productId: '',
@@ -49,12 +50,14 @@ const getters = {
     GET_PRODUCT_DETAILS: (state) => (productId) => {
       let p = state.products.find((e) => e.id === productId)
       var totalQuantity = 0
-      Warehouse.state.warehouses.forEach(o =>{
+      var warehousesThatHasStock = []
+      Warehouse.state.warehouses.forEach(o => {
         let i = o.goodQuantityProducts.find((x) => x.product.id === productId)
-        if(i != null){
+        if (i != null) {
           totalQuantity += i.quantity
+          warehousesThatHasStock.push({name: o.name, address: o.address, quantity: i.quantity})
         }
-    })
+      })
       return {
         'Category': p.category == null ? '' : p.category.name,
         'Item Code': p.itemCode,
@@ -64,11 +67,46 @@ const getters = {
         'MinimumStocks': p.minimumStocks,
         'Vatable': p.vatable === true ? 'Vatable' : 'Not Vatable',
         'Remarks': p.remarks,
-        'Total Stocks': totalQuantity
+        'Total Stocks': totalQuantity,
+        'Warehouse': warehousesThatHasStock,
       }
+    },
+    GET_PRODUCT_STOCK_DETAILS: (state) => (productId) => {
+      var p = state.products.find((e) => e.id === productId)
+      var totalQuantity = 0
+      Warehouse.state.warehouses.forEach(o => {
+        let i = o.goodQuantityProducts.find((x) => x.product.id === productId)
+        if (i != null) {
+          totalQuantity += i.quantity
+        }
+      })
+
+      return [
+        {
+          'Category': p.category == null ? '' : p.category.name,
+          'Item Code': p.itemCode,
+          'Description': p.description,
+          'Current Unit Price': 'To Be Implemented in History',
+          'Current Capital Cost': 'To Be Implemented in History',
+          'Supplier Name': 'To Be Implemented in History',
+          'Total Quantity':totalQuantity
+        },
+      ]
+    },
+    GET_PRODUCT_STOCK:(state) => (productId) => {
+      var totalQuantity = 0
+      var warehousesThatHasStock = []
+      Warehouse.state.warehouses.forEach(o => {
+        let i = o.goodQuantityProducts.find((x) => x.product.id === productId)
+        if (i != null) {
+          totalQuantity += i.quantity
+          warehousesThatHasStock.push({'name': o.name, 'address': o.address, 'quantity': i.quantity})
+        }
+      })
+
+      return warehousesThatHasStock
     }
   }
-;
 
 const mutations = {
   addProduct: (state, product) => {

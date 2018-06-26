@@ -10,13 +10,17 @@ const getters = {
     GET_ACTIVE_WAREHOUSE: (state) => {
       return state.warehouses.filter((val) => val.active)
     },
-    GET_WAREHOUSE: (state) => (warehouseId) => {
+    GET_WAREHOUSE_DETAILS: (state) => (warehouseId) => {
       let p = state.warehouses.find(e => e.id === warehouseId)
       return {
         'Name': p.name,
         'Location': p.address,
         'Description': p.description
       }
+    },
+    GET_WAREHOUSE: (state) => (warehouseId) => {
+      return state.warehouses.find(e => e.id === warehouseId)
+
     },
     GET_FILTERED_WAREHOUSES_TO_VIEW: (state) => {
       return state.filteredWarehouses.map(o => {
@@ -78,6 +82,11 @@ const actions = {
       Vue.axios.get(('/api/warehouse/list')).then((response) => {
         commit('SET_WAREHOUSES', response.data);
       })
+    })
+  },
+  CREATE_WAREHOUSE: ({commit}, warehouse) =>{
+    Vue.axios.post('api/warehouse/create',warehouse).then(response =>{
+      state.warehouses.push(response.data)
     })
   },
   DELETE_WAREHOUSE: ({commit}, warehouseId) => {

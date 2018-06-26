@@ -1,12 +1,11 @@
 <template>
   <div>
-    <button class="btn btn-primary"  type="button" @click="onBack">Back</button>
+    <button type="button" @click="onBack">Back</button>
     <goodProductTable
       :table-headers="tableHeaders"
       :table-data="goodProducts"
       :kindsOfButton="kindsOfButton"
     />
-
   </div>
 
 </template>
@@ -25,9 +24,6 @@
     },
     components: {
       goodProductTable: BaseTable
-    },
-    computed:{
-
     },
     created() {
       this.$store.dispatch('FIND_BY_WAREHOUSE_ID', this.id).then(o => {

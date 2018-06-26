@@ -1,7 +1,7 @@
 <template>
   <div class="panel panel-default header">
     <ul class="class nav nav-pills">
-      <button class="btn btn-primary" @click="onNew">Add Warehouse</button>
+      <button class="btn btn-primary" type="button" @click="onNew">Add Warehouse</button>
       <div class="form-group col-md-2">
         <label for="status" class="text-center col-md-offset-4" color="white">Status</label>
         <select class="form-control"
@@ -30,7 +30,7 @@
     },
     methods: {
       onNew() {
-        this.$router.push({path: '/warehouse/new'})
+        this.$router.push({path: '/warehouses/new'})
       }
     },
     data() {

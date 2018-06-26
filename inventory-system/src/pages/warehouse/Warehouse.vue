@@ -67,8 +67,7 @@
             break
           case 'Details':
             console.log('details')
-            this.warehouseDetails = this.$store.getters.GET_WAREHOUSE(warehouseId)
-            console.log(this.warehouseDetails)
+            this.warehouseDetails = this.$store.getters.GET_WAREHOUSE_DETAILS(warehouseId)
             break
           case 'Change Status':
             this.$store.dispatch('SET_STATUS_OF_WAREHOUSE',warehouseId)

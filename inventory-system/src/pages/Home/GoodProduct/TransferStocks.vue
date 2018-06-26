@@ -1,56 +1,69 @@
 <template>
-  <div>
-    <h1>{{transferForm.warehouseIdFrom}} {{id}}</h1>
-    <select name="" id="stockOption" class="col-md-2">
-      <option :selected="selectedStock" :value="stock" v-for="stock in stockOption">{{stock}}</option>
-    </select>
-    <select name="" id="transferTo" v-model="transferForm.warehouseIdTo">
-      <option :value="warehouse.id" v-for="warehouse in warehouses">{{warehouse.name}}</option>
-    </select>
-    <select name="" id="itemCode" class="col-md-4" v-model="transferForm.productId">
-      <option :selected="''" :value="product.id" v-for="product in products">{{product.itemCode}} : {{product.id}}</option>
-    </select>
-    <input type="number" v-model="transferForm.quantity">
-    <button type="button" @click="transferStocks(transferForm)">Transfer Stocks</button>
-    <button type="button" @click="onCancel">Cancel</button>
+  <div class="row col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <p>Transfer Input</p>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="transferTo">Transfer quantity to Warehouse</label>
+          <select name="" id="transferTo" v-model="transferForm.warehouseIdTo" class="col-md-4 form-control">
+            <option :value="warehouse.id" v-for="warehouse in warehouses">{{warehouse.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="itemCode">Item Code</label>
+          <select name="" id="itemCode" class="col-md-4 form-control" v-model="transferForm.productId">
+            <option :selected="''" :value="product.id" v-for="product in products">{{product.itemCode}} : {{product.id}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="transferTo">Quantity</label>
+          <input type="number" v-model="transferForm.quantity" class="col-md-4 form-control">
+        </div>
+        <button class="btn btn-primary" type="button" @click="transferStocks(transferForm)">Transfer Stocks</button>
+        <button class="btn btn-primary" type="button" @click="onCancel">Cancel</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
     name: "StockForm",
-    props:{
-      id:{
-        type:String,
+    props: {
+      id: {
+        type: String,
         default: ''
       }
     },
-    data(){
-      return{
-        stockOption:['Good Stock','Damaged Stock'],
-        selectedStock:'',
-        quantity:0,
-        warehouses:[],
-        transferForm:{
-          warehouseIdFrom:'',
-          warehouseIdTo:'',
-          productId:'',
-          quantity:0
+    data() {
+      return {
+        stockOption: ['Good Stock', 'Damaged Stock'],
+        selectedStock: '',
+        quantity: 0,
+        warehouses: [],
+        transferForm: {
+          warehouseIdFrom: '',
+          warehouseIdTo: '',
+          productId: '',
+          quantity: 0
         }
       }
     },
-    computed:{
-      products(){
+    computed: {
+      products() {
         return this.$store.getters.GET_ACTIVE_PRODUCT.map((o) => {
           return {
-            'id':o.id,
-            'itemCode':o.itemCode
+            'id': o.id,
+            'itemCode': o.itemCode
           }
         })
 
       }
     },
-    created(){
+    created() {
       this.$store.dispatch('INIT_PRODUCTS')
       this.warehouses = this.$store.getters.GET_ACTIVE_WAREHOUSE
 
@@ -58,9 +71,9 @@
       console.log(this.id)
       console.log(this.transferForm.warehouseIdFrom)
     },
-    methods:{
-      transferStocks(transferForm){
-        this.$store.dispatch('TRANSFER_STOCKS',transferForm)
+    methods: {
+      transferStocks(transferForm) {
+        this.$store.dispatch('TRANSFER_STOCKS', transferForm)
         this.$router.push('/')
         this.$destroy()
       },
