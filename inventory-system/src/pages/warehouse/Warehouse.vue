@@ -50,10 +50,7 @@
       }
     },
     created() {
-      this.axios.get('/api/warehouse/list').then(response => {
-        this.$store.dispatch('setWarehouses', response.data)
-        console.log(response.data)
-      })
+        this.$store.dispatch('INIT_WAREHOUSES')
     },
     methods: {
       onClick(button) {

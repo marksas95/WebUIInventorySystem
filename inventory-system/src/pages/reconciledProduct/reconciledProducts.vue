@@ -1,6 +1,5 @@
 <template>
   <div class="border">
-    <appHeader></appHeader>
     <div>
       <productTable v-show="!individualDetails"
                     :table-headers="tableHeaders"
@@ -26,12 +25,11 @@
   export default {
     data() {
       return {
-        tableHeaders: ['Category', 'Item Code', 'Description', 'Unit of Measurement', 'Serial Number', 'Status'],
+        tableHeaders: ['Date', 'Item Code', 'Warehouse', 'Remarks', 'Physical Count', 'SystemCount'],
         individualDetails: false,
         productIdToPass: 0,
         productDetails: {},
-        detailsTitle: 'Product Details',
-        productsToView: ['All', 'Active Only', 'Inactive Only'],
+
         selectViewProduct: 'All',
         categoriesToSelect: [],
         categoryId: 0,
@@ -59,20 +57,22 @@
       }),
       onClick(button) {
         if(button === 'Details')
-        this.individualDetails = !this.individualDetails;
+          this.individualDetails = !this.individualDetails;
+        console.log(this.individualDetails)
+        console.log(this.productsToView)
       },
       buttonFunction(productId,button){
         switch (button){
           case 'Details':
             this.productDetails = this.GET_PRODUCT_DETAILS(productId)
-                break
+            break
           case 'Edit':
             debugger
             this.$router.push({path: `/products/${productId}`})
             this.$destroy()
-                break
+            break
           case 'Change Status':
-              this.$store.dispatch('UPDATE_PRODUCT_STATUS',productId)
+            this.$store.dispatch('UPDATE_PRODUCT_STATUS',productId)
         }
       }
     },

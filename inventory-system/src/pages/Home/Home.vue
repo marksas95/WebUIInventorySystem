@@ -42,7 +42,6 @@
         this.axios.get('/api/warehouse/list').then(response => {
           this.$store.dispatch('setWarehouses', response.data)
         })
-        console.log(this.warehouses)
       },
       components:{
           warehouseStocks

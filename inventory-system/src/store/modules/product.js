@@ -5,7 +5,7 @@ const state = {
   productId: '',
   counter: 0,
   filteredProduct: [],
-  searchedProduct:[]
+  searchedProduct: []
 };
 
 const getters = {
@@ -46,8 +46,13 @@ const getters = {
     GET_PRODUCT: (state) => (productId) => {
       return state.products.find((e) => e.id === productId)
     },
-    GET_PRODUCT_DETAILS: state => (productId) => {
+    GET_PRODUCT_DETAILS: (rootState) => (productId) => {
       let p = state.products.find((e) => e.id === productId)
+      // var totalQuantity = 0
+      // rootState.warehouses.forEach(o => o.goodQuantityProducts
+      //   .find(x => x.product.id == productId)
+      //   .then(k => totalQuantity += k.quantity))
+
       return {
         'Category': p.category == null ? '' : p.category.name,
         'Item Code': p.itemCode,
@@ -133,7 +138,7 @@ const actions = {
       })
     })
   },
-  SEARCH_FILTERED_PRODUCTS: ({commit},{keyword,searchBy}) => {
+  SEARCH_FILTERED_PRODUCTS: ({commit}, {keyword, searchBy}) => {
     console.log('keyword: ' + keyword)
     console.log('searchBy: ' + searchBy)
     switch (searchBy) {

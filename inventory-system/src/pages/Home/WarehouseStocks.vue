@@ -13,7 +13,7 @@
           <button type="button" @click="viewGoodStocks">View Good Stocks</button>
           <button type="button" @click="stockIn">Stock In</button>
             <button type="button" @click="stockOut">Stock Out</button>
-          <button>Transfer Stocks</button>
+          <button type="button" @click="transferStocks">Transfer Stocks</button>
         </div>
         <h3 class="panel-title" @click="">
           Damaged Products
@@ -47,7 +47,6 @@
             <!--class="btn btn-success"-->
             <!--@click = "">Buy</button>-->
           <!--&lt;!&ndash;:disabled="quantity <= 0 || Number.isInteger(quantity)">Buy&ndash;&gt;-->
-
         <!--</div>-->
       </div>
     </div>
@@ -93,6 +92,10 @@
             } else {
               alert('Warehouse is not active!')
             }
+          },
+          transferStocks(){
+            this.$router.push('/transfer-stocks/'+this.warehouseData.id)
+            this.$destroy()
           },
         viewGoodStocks(){
           this.$router.push('/good-products/'+this.warehouseData.id)

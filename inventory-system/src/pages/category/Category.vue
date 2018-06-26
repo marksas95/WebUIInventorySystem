@@ -14,12 +14,11 @@
 
 <script>
 
-import CategoryTable from "../../components/BaseTable.vue";
-import category from "../../store/modules/category";
-import CategoryHeader from "./CategoryHeader.vue";
-import { mapActions } from "vuex";
+  import CategoryTable from "../../components/BaseTable.vue";
+  import CategoryHeader from "./CategoryHeader.vue";
+  import {mapActions} from "vuex";
 
-export default {
+  export default {
   name: "Category",
   components: {
     categoryTable: CategoryTable,
@@ -45,19 +44,18 @@ export default {
     this.$store.dispatch('INIT_CATEGORY');
   },
   methods: {
-
 ...mapActions
     (['INIT_CATEGORY',
       'DELETE_CATEGORY']),
-    buttonFunction(categoryId,button){
-      switch (button){
+    buttonFunction(categoryId, button) {
+      switch (button) {
         case 'Edit':
-          this.$router.push({path:`/categories/${categoryId}`})
+          this.$router.push({path: `/categories/${categoryId}`})
           this.$destroy
           break
-        case 'delete':
+        case 'Delete':
           if (confirm('Are you sure you want to delete category?')) {
-          this.DELETE_CATEGORY(categoryId)
+            this.DELETE_CATEGORY(categoryId)
           }
       }
     },
