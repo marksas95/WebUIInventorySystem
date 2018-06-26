@@ -20,7 +20,9 @@
     },
     methods:{
       onNew(){
+
           this.$router.push({path:'/categories/new'})
+          this.$destroy()
       }
     },
     data(){

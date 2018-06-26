@@ -36,7 +36,10 @@ const actions = {
       })
   },
 
-  
+  // CREATE_SUPPLIER: ({commit}, supplier){
+  //   Vue.axios.post
+
+  // }
 
 };
 

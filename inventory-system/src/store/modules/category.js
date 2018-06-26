@@ -88,7 +88,8 @@ const actions = {
       Vue.axios.post('/api/category/create?name='+category.name).then((response)=>{
         Vue.axios.get('/api/category/list').then((response)=>{
           console.log(response.data)
-          commit('addCategory',response.data)
+          commit('setCategories',response.data)
+          resolve(response.data)
         })
       })
     })

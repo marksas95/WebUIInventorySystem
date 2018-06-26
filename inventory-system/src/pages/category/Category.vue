@@ -4,8 +4,6 @@
     <categoryTable
   :table-headers = "categoryHeaders"
   :table-data = "categories"
-  :on-edit = "editCategory"
-  :on-delete = "deleteCategory"
   :kinds-of-button="kindsOfButton"
   :button-function="buttonFunction"/>
   </div>
@@ -59,16 +57,7 @@
           }
       }
     },
-    editCategory(categoryId) {
-      console.log('edit')
-      this.$router.push({path:`/categories/${categoryId}`})
-    },
-    deleteCategory(categoryId) {
-      console.log("delete");
-      console.log(categoryId);
-      // this.axios.delete("api/category/delete?id=" + categoryId);
-      this.DELETE_CATEGORY(categoryId)
-    }
+    
   }
 };
 </script>

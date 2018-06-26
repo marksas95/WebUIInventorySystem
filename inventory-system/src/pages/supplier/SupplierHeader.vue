@@ -31,6 +31,7 @@
     methods:{
       onNew(){
           this.$router.push({path:'/suppliers/new'})
+          
       }
     },
     data(){

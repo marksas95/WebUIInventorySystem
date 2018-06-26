@@ -56,7 +56,7 @@ export default {
       console.log(this.category)
       if (this.id === "new") {
         this.CREATE_CATEGORY(this.category);
-        this.INIT_CATEGORY(this.category);
+        
         this.$router.push({ path: "/categories" });
       } else {
         console.log("update");
@@ -64,7 +64,7 @@ export default {
         this.UPDATE_CATEGORY(this.category);
         this.$router.push({path: '/categories'})
       }
-      this.$destroy()
+     
     },
     onCancel() {
       this.$router.push({ path: "/categories" });
