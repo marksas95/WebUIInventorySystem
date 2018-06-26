@@ -38,7 +38,7 @@ export default {
   },
   data() {
     return {
-      ...mapActions(["CREATE_CATEGORY", "UPDATE_CATEGORY"]),
+      ...mapActions(["CREATE_CATEGORY", "UPDATE_CATEGORY", "INIT_CATEGORY"]),
       categoryList: {},
       category: {
         name:''
@@ -56,6 +56,7 @@ export default {
       console.log(this.category)
       if (this.id === "new") {
         this.CREATE_CATEGORY(this.category);
+        this.INIT_CATEGORY(this.category);
         this.$router.push({ path: "/categories" });
       } else {
         console.log("update");

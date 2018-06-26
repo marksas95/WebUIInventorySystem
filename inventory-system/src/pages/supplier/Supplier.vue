@@ -6,6 +6,7 @@
     :table-data="suppliers"
     :onEdit="editSupplier"
     :onDelete="deleteSupplier"
+    :kinds-of-button = "kindsOfButtons"
     />
 </div>
       
@@ -21,7 +22,8 @@ export default {
 	name: 'Supplier',
 	data(){
     return {
-      tableHeaders: ['Name']
+      tableHeaders: ['Name'],
+      kindsOfButtons: ['Edit', 'Delete']
     }
 	},
 	methods:{
@@ -30,6 +32,16 @@ export default {
       'DELETE_SUPPLIERS'
     ]),
 
+    buttonFunction(supplierId,button){
+      switch(button){
+        case 'Edit':
+        this.$router.push({ path:`/suppliers/${supplierId}`})
+        
+
+      }
+
+
+    },
     editSupplier(supplierId) {
       console.log('edit')
       console.log(supplierId)

@@ -52,10 +52,11 @@ export default {
     buttonFunction(categoryId,button){
       switch (button){
         case 'Edit':
+          console.log('edit')
           this.$router.push({path:`/categories/${categoryId}`})
           this.$destroy
           break
-        case 'delete':
+        case 'Delete':
           if (confirm('Are you sure you want to delete category?')) {
           this.DELETE_CATEGORY(categoryId)
           }
