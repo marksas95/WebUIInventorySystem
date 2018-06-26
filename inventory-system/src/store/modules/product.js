@@ -1,11 +1,11 @@
 import Vue from 'vue'
-
+import Warehouse from './warehouse'
 const state = {
   products: [],
   productId: '',
   counter: 0,
   filteredProduct: [],
-  searchedProduct:[]
+  searchedProduct: []
 };
 
 const getters = {
@@ -46,8 +46,15 @@ const getters = {
     GET_PRODUCT: (state) => (productId) => {
       return state.products.find((e) => e.id === productId)
     },
-    GET_PRODUCT_DETAILS: state => (productId) => {
+    GET_PRODUCT_DETAILS: (state) => (productId) => {
       let p = state.products.find((e) => e.id === productId)
+      var totalQuantity = 0
+      Warehouse.state.warehouses.forEach(o =>{
+        let i = o.goodQuantityProducts.find((x) => x.product.id === productId)
+        if(i != null){
+          totalQuantity += i.quantity
+        }
+    })
       return {
         'Category': p.category == null ? '' : p.category.name,
         'Item Code': p.itemCode,
@@ -56,7 +63,8 @@ const getters = {
         'Serial Number': p.serialNumber,
         'MinimumStocks': p.minimumStocks,
         'Vatable': p.vatable === true ? 'Vatable' : 'Not Vatable',
-        'Remarks': p.remarks
+        'Remarks': p.remarks,
+        'Total Stocks': totalQuantity
       }
     }
   }
@@ -133,7 +141,7 @@ const actions = {
       })
     })
   },
-  SEARCH_FILTERED_PRODUCTS: ({commit},{keyword,searchBy}) => {
+  SEARCH_FILTERED_PRODUCTS: ({commit}, {keyword, searchBy}) => {
     console.log('keyword: ' + keyword)
     console.log('searchBy: ' + searchBy)
     switch (searchBy) {

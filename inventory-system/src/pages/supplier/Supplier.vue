@@ -4,9 +4,8 @@
     <supplierTable
     :table-headers="tableHeaders"
     :table-data="suppliers"
-    :onEdit="editSupplier"
-    :onDelete="deleteSupplier"
-    :kinds-of-button = "kindsOfButtons"
+    :kinds-of-button="kindsOfButton"
+    :button-function="buttonFunction"
     />
 </div>
       
@@ -23,7 +22,7 @@ export default {
 	data(){
     return {
       tableHeaders: ['Name'],
-      kindsOfButtons: ['Edit', 'Delete']
+      kindsOfButton: ['Edit','Delete']
     }
 	},
 	methods:{
@@ -31,29 +30,17 @@ export default {
     ...mapActions([
       'DELETE_SUPPLIERS'
     ]),
-
     buttonFunction(supplierId,button){
-      switch(button){
+      switch (button){
         case 'Edit':
-        this.$router.push({ path:`/suppliers/${supplierId}`})
-        
-
+          this.$router.push({ path:`/suppliers/${supplierId}`})
+          this.$destroy
+          break
+        case 'Delete':
+          if (confirm('Are you sure you want to delete supplier?')) {
+            this.DELETE_SUPPLIERS(supplierId)
+          }
       }
-
-
-    },
-    editSupplier(supplierId) {
-      console.log('edit')
-      console.log(supplierId)
-      this.$router.push({ path:`/suppliers/${supplierId}`})
-    },
-    deleteSupplier(supplierId) {
-     
-        console.log('delete')
-        console.log(supplierId)
-        this.DELETE_SUPPLIERS(supplierId)
-     
-      
     }
 	},
 	components:{

@@ -19,9 +19,6 @@
                   @click="buttonFunction(x.id, button); onClick(button);"
                   v-for="button in kindsOfButton"
                   type="button">{{button}}</button>
-          <button @click="onEdit(x.id)" class="btn btn-primary">Edit</button>
-          <button @click="onDelete(x.id)" class="btn btn-danger">Delete</button>
-            <button @click="onDetails(x.id)" class="btn btn-default">Details</button>
         </th>
       </tr>
       </tbody>
@@ -44,21 +41,6 @@
       tableData: {
         type: Array,
         default: []
-      },
-      onEdit: {
-        type: Function,
-        default: () => {
-        }
-      },
-      onDelete: {
-        type: Function,
-        default: () => {
-        }
-      },
-      onDetails: {
-        type: Function,
-        default: () => {
-        }
       },
       onClick: {
         type: Function,
